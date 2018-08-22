@@ -1,0 +1,19 @@
+topic: ~introductions keep repeat []
+
+
+t: (%input<%userfirstline %input>0) 
+	^keep()
+	[welcome back] [hello again] [Glad you came back][Hi again], user 
+
+
+t: (%input<%userfirstline)
+	^keep()
+	[Hello][Hey][Hi], user
+
+t: This chatbot will have the basic informations about Adama Science and Technology University and will be able to interact with the users and feed them those basic informations when asked.
+
+r: Have you ever used this chatbot before ?
+    a: (~yes) Then welcome back.
+    a: (~no)  Welcome to your first time.
+
+
