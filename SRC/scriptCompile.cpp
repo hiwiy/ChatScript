@@ -3,6 +3,10 @@
 // ALWAYS AVAILABLE
 //------------------------
 static unsigned int undefinedCallThreadList = 0;
+<<<<<<< HEAD
+=======
+static bool nospellcheck = false;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 static int complexity = 0;
 static int priorLine = 0;
 bool autoset = false;
@@ -103,7 +107,12 @@ void ScriptWarn()
 
 void AddError(char* buffer)
 {
+<<<<<<< HEAD
 	sprintf(errors[errorIndex++],(char*)"line %d of %s: %s",currentFileLine,currentFilename,buffer);
+=======
+    if (*botheader) sprintf(errors[errorIndex++],(char*)"*** Error- line %d of %s bot:%s : %s\r\n", currentFileLine, currentFilename, botheader,buffer);
+    else sprintf(errors[errorIndex++], (char*)"*** Error- line %d of %s: %s\r\n", currentFileLine, currentFilename,buffer);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (errorIndex >= MAX_ERRORS) --errorIndex;
 }
 
@@ -118,7 +127,12 @@ void ScriptError()
 	{
 		++hasErrors; 
 		patternContext = false; 
+<<<<<<< HEAD
 		Log(STDTRACELOG,(char*)"*** Error- line %d of %s: ",currentFileLine,currentFilename);
+=======
+        if (*botheader) Log(STDTRACELOG, (char*)"*** Error- line %d of %s bot:%s : ", currentFileLine, currentFilename, botheader);
+        else Log(STDTRACELOG, (char*)"*** Error- line %d of %s: ", currentFileLine, currentFilename);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	}
 }
 
@@ -968,8 +982,15 @@ char* ReadSystemToken(char* ptr, char* word, bool separateUnderscore) //   how w
 		}  
 		if (*at && IsPunctuation(*at) & ARITHMETICS && *at != '=')
 		{
+<<<<<<< HEAD
 			// - is legal in a var or word token
 			if (*at != '-' || (!IsAlphaUTF8OrDigit(at[1]) && at[1] != '_'))
+=======
+            if (*at == '.' && at[1] == '_' && IsDigit(at[2])) {} // json field reference indirection
+            else if (*at == '.' && at[1] == '\'' && at[2] == '_' && IsDigit(at[3])) {} // json field reference indirection
+                                                                // - is legal in a var or word token
+			else if (*at != '-' || (!IsAlphaUTF8OrDigit(at[1]) && at[1] != '_'))
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			{
 				ptr -= strlen(at);
 				*at = 0;
@@ -1024,7 +1045,25 @@ char* ReadDisplayOutput(char* ptr,char* buffer) // locate next output fragment t
 	char* out = buffer;
 	while (*ptr != ENDUNIT) // not end of data
 	{
+<<<<<<< HEAD
 		ptr = ReadCompiledWord(ptr,out); // move token 
+=======
+        char* before = ptr;
+		ptr = ReadCompiledWord(ptr,out); // move token 
+        if (*out && out[1] && out[2] && (out[3] == '{' || out[3] == '(') && !out[4]) // accellerator + opening?
+        {   
+            ptr = before + ACCELLSIZE; // ignore accel
+            continue;
+        }
+        if (*out && out[1] && out[2] && !out[3] && ptr[0] == '{') // accellerator + opening?
+        {
+            continue; // accel before else final code
+        }
+        if (!strnicmp(ptr, "else", 4) && !out[3])
+        {
+            continue; // skip accel before else 
+        }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		char* copied = out;
 		out += strlen(out);
 		strcpy(out,(char*)" ");
@@ -1191,11 +1230,21 @@ static void AddMap(char* kind,char* msg)
 static void ClearBeenHere(WORDP D, uint64 junk)
 {
 	RemoveInternalFlag(D,BEEN_HERE);
+<<<<<<< HEAD
+=======
+    // clear transient ignore spell warning flag
+    if (D->internalBits & DO_NOISE && !(D->internalBits & HAS_SUBSTITUTE))
+        RemoveInternalFlag(D, DO_NOISE);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 }
 
 bool TopLevelUnit(char* word) // major headers (not kinds of rules)
 {
+<<<<<<< HEAD
 	return (!stricmp(word,(char*)":quit") || !stricmp(word,(char*)"canon:")  || !stricmp(word,(char*)"replace:") || !stricmp(word, (char*)"prefer:") || !stricmp(word,(char*)"query:")  || !stricmp(word,(char*)"concept:") || !stricmp(word,(char*)"data:") || !stricmp(word,(char*)"plan:")
+=======
+	return (!stricmp(word,(char*)":quit") || !stricmp(word,(char*)"canon:")  || !stricmp(word,(char*)"replace:") || !stricmp(word, (char*)"ignorespell:") || !stricmp(word, (char*)"prefer:") || !stricmp(word,(char*)"query:")  || !stricmp(word,(char*)"concept:") || !stricmp(word,(char*)"data:") || !stricmp(word,(char*)"plan:")
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		|| !stricmp(word,(char*)"outputMacro:") || !stricmp(word,(char*)"patternMacro:") || !stricmp(word,(char*)"dualMacro:")  || !stricmp(word,(char*)"table:") || !stricmp(word,(char*)"tableMacro:") || !stricmp(word,(char*)"rename:") || 
 		!stricmp(word,(char*)"describe:") ||  !stricmp(word,(char*)"bot:") || !stricmp(word,(char*)"topic:") || (*word == ':' && IsAlphaUTF8(word[1])) );	// :xxx is a debug command
 }
@@ -1388,12 +1437,24 @@ static void WritePatternWord(char* word)
 	char utfcharacter[10];
 	char* x = IsUTF8(word, utfcharacter); 
 	if (!strcmp(tmp,word) || utfcharacter[1])  {;} // came in as lower case or as UTF8 character, including ones that don't have an uppercase version?
+<<<<<<< HEAD
 	else if (upper && (GetMeaningCount(upper) > 0 || upper->properties & NORMAL_WORD )){;} // clearly known as upper case
 	else if (lower && lower->properties & NORMAL_WORD && !(lower->properties & (DETERMINER|AUX_VERB))) 
 		WARNSCRIPT((char*)"Keyword %s should not be uppercase - did prior rule fail to close\r\n",word)
 	else if (spellCheck && lower && lower->properties & VERB && !(lower->properties & NOUN)) 
 		WARNSCRIPT((char*)"Uppercase keyword %s is usually a verb.  Did prior rule fail to close\r\n",word)
 	char* pos;
+=======
+    else if (nospellcheck) {;}
+    else if (lower && lower->internalBits & DO_NOISE && !(lower->internalBits & HAS_SUBSTITUTE)) {} // told not to check
+    else if (upper && (GetMeaningCount(upper) > 0 || upper->properties & NORMAL_WORD )){;} // clearly known as upper case
+	else if (lower && lower->properties & NORMAL_WORD && !(lower->properties & (DETERMINER|AUX_VERB)))
+		WARNSCRIPT((char*)"Keyword %s should not be uppercase - did prior rule fail to close\r\n",word)
+	else if (spellCheck && lower && lower->properties & VERB && !(lower->properties & NOUN))
+		WARNSCRIPT((char*)"Uppercase keyword %s is usually a verb.  Did prior rule fail to close\r\n",word)
+	
+        char* pos;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if ((pos = strchr(word,'\'')) && (pos[1] != 's' && !pos[1]))  WARNSCRIPT((char*)"Contractions are always expanded - %s won't be recognized\r\n",word)
 	if (D->properties & NORMAL_WORD) return;	// already a known word
 	if (D->internalBits & BEEN_HERE) return;	//   already written to pattern file or doublecheck topic ref file
@@ -1960,12 +2021,55 @@ static void TestSubstitute(char* word,char* message)
 static void SpellCheckScriptWord(char* input,int startSeen,bool checkGrade) 
 {
 	if (!stricmp(input,(char*)"null")) return; // assignment clears
+<<<<<<< HEAD
 
 	// remove any trailing punctuation
 	char word[MAX_WORD_SIZE];
 	strcpy(word,input);
 	size_t len = strlen(word);
 	while (len > 1 && !IsAlphaUTF8(word[len-1]) && word[len-1] != '.') word[--len] = 0;
+=======
+    if (nospellcheck) return;
+
+	// remove any trailing punctuation
+	char word[MAX_WORD_SIZE];
+
+    // see if supposed to ignore capitalization differences
+    MakeLowerCopy(word, input);
+    WORDP X = FindWord(word, 0, LOWERCASE_LOOKUP);
+    if (X && X->internalBits & DO_NOISE && !(X->internalBits & HAS_SUBSTITUTE))
+        return;
+	strcpy(word,input);
+	size_t len = strlen(word);
+	while (len > 1 && !IsAlphaUTF8(word[len-1]) && word[len-1] != '.') word[--len] = 0;
+    
+    WORDP set[20];
+    int i = GetWords(word, set, false); // words in any case and with mixed underscore and spaces
+    char text[MAX_WORD_SIZE];
+    *text = 0;
+    int nn = 0;
+    if (i > 1) // multiple spell?
+    {
+        for (int x = 0; x < i; ++x)
+        {
+            if (GETMULTIWORDHEADER(set[x]))
+            {
+                if (!(set[x]->properties & TAG_TEST)) 
+                    continue; // dont care
+            }
+            if (set[x]->properties & NOUN_FIRSTNAME)  // Will, June, etc
+                continue;
+            strcat(text, set[x]->word);
+            strcat(text, " ");
+            ++nn;
+        }
+    }
+    if (nn > 1)
+    {
+        WARNSCRIPT((char*)"Word \"%s\" known in multiple spellings %s\r\n", word, text)
+        return;
+    }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 	WORDP D = FindWord(word,0,LOWERCASE_LOOKUP);
 	WORDP entry = D;
@@ -1973,13 +2077,18 @@ static void SpellCheckScriptWord(char* input,int startSeen,bool checkGrade)
 	if (word[1] == 0 || IsUpperCase(*input) || !IsAlphaUTF8(*word)  || strchr(word,'\'') || strchr(word,'.') || strchr(word,'_') || strchr(word,'-') || strchr(word,'~')) {;} // ignore proper names, sets, numbers, composite words, wordnet references, etc
 	else if (stricmp(language,"english")) {;} // dont complain on foreign
 	else if (!D || (!(D->properties & NORMAL_WORD) && !(D->systemFlags & PATTERN_WORD)))
+<<<<<<< HEAD
 	{
+=======
+	{ // we dont know this word in lower case
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		uint64 sysflags = 0;
 		uint64 cansysflags = 0;
 		wordStarts[0] = wordStarts[1] = wordStarts[2] = wordStarts[3] = AllocateHeap((char*)"");
 		wordCount = 1;
 		WORDP revise;
 		uint64 flags = GetPosData(-1,word,revise,entry,canonical,sysflags,cansysflags,false,true,0);
+<<<<<<< HEAD
 		// do we know a possible base for it
 		//char* canon = FindCanonical(word, 2,true);
 		//if (!canon) canon = GetSingularNoun(word,true,true);
@@ -1991,6 +2100,13 @@ static void SpellCheckScriptWord(char* input,int startSeen,bool checkGrade)
 			WORDP E = FindWord(word,0,SECONDARY_CASE_ALLOWED); // uppercase
 			if (E && E != D && E->word[2]) WARNSCRIPT((char*)"Word %s only known in opposite case\r\n",word)   
 			else if (E &&  !(E->internalBits & UPPERCASE_HASH) && !D ) WARNSCRIPT((char*)"%s is not a known word. Is it misspelled?\r\n",word)
+=======
+		if (!flags) // try upper case
+		{
+			WORDP E = FindWord(word,0,SECONDARY_CASE_ALLOWED); // uppercase
+			if (E && E != D && E->word[2]) WARNSCRIPT((char*)"Word %s only known in upper case\r\n",word)   
+			else if (E && !(E->internalBits & UPPERCASE_HASH) && !D ) WARNSCRIPT((char*)"%s is not a known word. Is it misspelled?\r\n",word)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			canonical = E; // the base word
 		}
 	}
@@ -2140,7 +2256,10 @@ name of topic or concept
 	//   We claim an opening and termination comes from finding a toplevel token
 	if (macro) nestKind[nestIndex++] = '(';
 
+<<<<<<< HEAD
 	bool unorderedSeen = false; // << >> zone
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	bool variableGapSeen = false; // wildcard pending
 
 	// prefix characters
@@ -2226,14 +2345,23 @@ name of topic or concept
 				continue;
 			case '<':	//   sentence start <  or  unordered start <<
 				if (quoteSeen) BADSCRIPT((char*)"PATTERN-12 Cannot use ' before < or <<\r\n")
+<<<<<<< HEAD
 				if (notSeen) BADSCRIPT((char*)"PATTERN-13 Cannot use ! before < or <<\r\n")
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				if (memorizeSeen) BADSCRIPT((char*)"PATTERN-13 Cannot use _ before < or <<\r\n")
 				if (word[1] == '<')  //   <<  unordered start
 				{
 					if (memorizeSeen) BADSCRIPT((char*)"PATTERN-14 Cannot use _ before << \r\n")
+<<<<<<< HEAD
 					if (unorderedSeen) BADSCRIPT((char*)"PATTERN-15 << already in progress\r\n")
 					if (variableGapSeen) BADSCRIPT((char*)"PATTERN-16 Cannot use * before <<\r\n")
 					unorderedSeen = true;
+=======
+					if (nestKind[nestIndex-1] == '<') BADSCRIPT((char*)"PATTERN-15 << already in progress\r\n")
+					if (variableGapSeen) BADSCRIPT((char*)"PATTERN-16 Cannot use * before <<\r\n")
+                    nestKind[nestIndex++] = '<';
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				}
 				else if (word[1])  BADSCRIPT((char*)"PATTERN-17 %s cannot start with <\r\n",word)
 				variableGapSeen = false;
@@ -2264,10 +2392,19 @@ name of topic or concept
 				if (quoteSeen) BADSCRIPT((char*)"PATTERN-21 Cannot use ' before > or >>\r\n")
 				if (word[1] == '>') //   >>
 				{
+<<<<<<< HEAD
 					if (memorizeSeen) BADSCRIPT((char*)"PATTERN-22 Cannot use _ before  >> \r\n")
 					if (!unorderedSeen) BADSCRIPT((char*)"PATTERN-23 Have no << in progress\r\n");
 					if (variableGapSeen) BADSCRIPT((char*)"PATTERN-24 Cannot use wildcard inside >>\r\n")
 					unorderedSeen = false;
+=======
+                    
+					if (memorizeSeen) BADSCRIPT((char*)"PATTERN-22 Cannot use _ before  >> \r\n")
+					if (nestKind[nestIndex - 1] != '<') BADSCRIPT((char*)"PATTERN-23 Have no << in progress\r\n");
+					if (variableGapSeen) BADSCRIPT((char*)"PATTERN-24 Cannot use wildcard inside >>\r\n")
+                    if (nestKind[--nestIndex] != '<') BADSCRIPT((char*)"PATTERN-24 Failing to close <<\r\n")
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				}
 				variableGapSeen = false;
 				break; //   sentence end align
@@ -2324,7 +2461,12 @@ name of topic or concept
 				break;
 			case '*': //   gap: * *1 *~2 	(infinite, exactly 1 word, 0-2 words, 0-2 words, 1 word before) and *alpha*x* is form match
 				if (quoteSeen) BADSCRIPT((char*)"PATTERN-44 Quoting a wildcard\r\n");
+<<<<<<< HEAD
 				if (unorderedSeen) BADSCRIPT((char*)"PATTERN-45 Cannot have wildcard %s inside << >>\r\n",word)
+=======
+                if (nestKind[nestIndex - 1] == '<') BADSCRIPT((char*)"PATTERN-45 Can not have wildcard %s inside << >>\r\n", word)
+                if (nestKind[nestIndex-1] != '(' && (word[1] == '~' || !word[1])) BADSCRIPT((char*)"PATTERN-45 Can only have variable wildcard %s inside ( )\r\n",word)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				if (variableGapSeen) 
 					BADSCRIPT((char*)"PATTERN-46 Cannot have wildcard followed by %s\r\n",word)
 				if (IsAlphaUTF8(word[1]) )
@@ -2414,7 +2556,11 @@ name of topic or concept
 
 				//    MERGE user pattern words into one? , e.g. drinking age == drinking_age in dictionary
 				//   only in () sequence mode. Dont merge [old age] or {old age} or << old age >>
+<<<<<<< HEAD
 				if (nestKind[nestIndex-1] == '(' && !unorderedSeen) //   BUG- do we need to see what triples etc wordnet has
+=======
+				if (nestKind[nestIndex-1] == '(') //   BUG- do we need to see what triples etc wordnet has
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				{ // dont want pattern may 9 to merge
 					ReadNextSystemToken(in,ptr,nextToken,true,true); 
 					WORDP F = FindWord(word);
@@ -2665,9 +2811,14 @@ name of topic or concept
 	if (macro && nestIndex != 1) 
 		BADSCRIPT((char*)"PATTERN-68 Failed to balance ( or [ or { properly in macro for %s\r\n",startPattern)
 	else if (!macro && nestIndex != 0) 
+<<<<<<< HEAD
 		BADSCRIPT((char*)"PATTERN-69 Failed to balance ( or [ or { properly for %s\r\n",startPattern);
 
 	if (unorderedSeen) BADSCRIPT((char*)"PATTERN-70 Failed to close <<\r\n")
+=======
+		BADSCRIPT((char*)"PATTERN-69 Failed to balance ( or [ or { or << properly, still at %c for %s\r\n",nestKind[nestIndex-1],startPattern);
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	patternContext = false;
 	return ptr;
 }
@@ -2776,7 +2927,12 @@ static char* ReadIfTest(char* ptr, FILE* in, char* &data)
     }
     MakeLowerCase(nextToken);
 	
+<<<<<<< HEAD
 	if (*nextToken != '(' && *word == '^' && word[1] != '"' && IsAlphaUTF8(word[1])) BADSCRIPT((char*)"%s is not the name of a local function argument\r\n",word)
+=======
+	if (*nextToken != '(' && *word == '^' && word[1] != '"' && IsAlphaUTF8(word[1])) 
+        BADSCRIPT((char*)"%s is not the name of a local function argument\r\n",word)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (*nextToken == '(')  // function call?
 	{
 		if (*word != '^') //     a call w/o its ^
@@ -3079,6 +3235,10 @@ static char* ReadIf(char* word, char* ptr, FILE* in, char* &data,char* rejoinder
 static char* ReadLoop(char* word, char* ptr, FILE* in, char* &data,char* rejoinders)
 {
     priorLine = currentFileLine;
+<<<<<<< HEAD
+=======
+    char* original = data;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	strcpy(data,(char*)"^loop ");
 	data += 6;
     if (mapFile && dataBase)
@@ -3101,8 +3261,26 @@ static char* ReadLoop(char* word, char* ptr, FILE* in, char* &data,char* rejoind
         AddMapOutput(priorLine);
         priorLine = currentFileLine;
     }
+<<<<<<< HEAD
     if (*word == '^'  && IsAlphaUTF8(word[1])) BADSCRIPT((char*)"%s is not the name of a local function argument\r\n",word)
 	if (*word == ')')  strcpy(data,(char*)"-1"); //   omitted, use -1
+=======
+    if (*word == '^'  && IsAlphaUTF8(word[1]))
+    {
+        WORDP D = FindWord(word, 0, LOWERCASE_LOOKUP);
+        if (!D || !(D->internalBits & FUNCTION_NAME))
+            BADSCRIPT((char*)"%s is not the name of a local function argument\r\n", word)
+            ReadNextSystemToken(in, ptr, nextToken, false, true);
+            ptr = ReadCall(word, ptr, in, data, *nextToken == '(', false); //   add function call
+            ptr = ReadNextSystemToken(in, ptr, word, false, false);
+            if (priorLine != currentFileLine)
+            {
+                AddMapOutput(priorLine);
+                priorLine = currentFileLine;
+            }
+    }
+	else if (*word == ')')  strcpy(data,(char*)"-1"); //   omitted, use -1
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	else if (!stricmp(word,(char*)"-1")) // precompiled previously -1
 	{
 		strcpy(data,word);
@@ -3110,7 +3288,11 @@ static char* ReadLoop(char* word, char* ptr, FILE* in, char* &data,char* rejoind
 		if (*word != ')') BADSCRIPT((char*)"Loop counter %s was not closed by )\r\n",word);
 	}
 	else if (!IsDigit(*word) && *word != USERVAR_PREFIX && *word != '_' && *word != SYSVAR_PREFIX  && *word != '^'  && *word != '@') 
+<<<<<<< HEAD
 		BADSCRIPT((char*)"LOOP-2 counter must be $var, _#, %var, @factset or ^fnarg  -%s",word)
+=======
+		BADSCRIPT((char*)"LOOP-2 counter must be $var, _#, %var, @factset or ^fnarg or function call -%s",word)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	else 
 	{
 		strcpy(data,word);
@@ -3123,7 +3305,12 @@ static char* ReadLoop(char* word, char* ptr, FILE* in, char* &data,char* rejoind
     }
 	data += strlen(data);
 	*data++ = ' ';
+<<<<<<< HEAD
 	if (*word != ')') BADSCRIPT((char*)"LOOP-3 counter must end with )  -%s\r\n",word)
+=======
+	if (*word != ')') 
+        BADSCRIPT((char*)"LOOP-3 counter must end with )  -%s\r\n",word)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	*data++ = ')';
 	*data++ = ' ';
 	char* loopstart = data;
@@ -3163,6 +3350,10 @@ static char* ReadLoop(char* word, char* ptr, FILE* in, char* &data,char* rejoind
     }
 	return ptr; // caller adds extra space after
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 static char* ReadJavaScript(FILE* in, char* &data,char* ptr)
 {
 	strcpy(data,"*JavaScript");
@@ -3539,7 +3730,11 @@ char* ReadOutput(bool optionalBrace,bool nested,char* ptr, FILE* in,char* &mydat
 
 static void ReadTopLevelRule(char* typeval,char* &ptr, FILE* in,char* data,char* basedata)
 {//   handles 1 responder/gambit + all rejoinders attached to it
+<<<<<<< HEAD
 	char type[10];
+=======
+	char type[100];
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	complexity = 1;
 	strcpy(type,typeval);
 	char info[400];
@@ -4321,7 +4516,12 @@ static char* ReadKeyword(char* word,char* ptr,bool &notted, bool &quoted, MEANIN
 			else // ordinary word or concept-- see if it makes sense
 			{
 				char end = word[strlen(word)-1];
+<<<<<<< HEAD
 				if (!IsAlphaUTF8OrDigit(end) && end != '"' && strlen(word) != 1)
+=======
+                if (nospellcheck) {}
+				else if (!IsAlphaUTF8OrDigit(end) && end != '"' && strlen(word) != 1)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				{
 					if (end != '.' || strlen(word) > 6) WARNSCRIPT((char*)"last character of keyword %s is punctuation. Is this intended?\r\n", word)
 				}
@@ -4463,7 +4663,12 @@ static char* ReadTopic(char* ptr, FILE* in,unsigned int build)
 		{
 		case '(': case '[':
 			if (!keywordsDone && topicFlagsDone) BADSCRIPT((char*)"TOPIC-3 Illegal bracking in topic keywords %s\r\n",word)
+<<<<<<< HEAD
 			if (flags & TOPIC_SHARE && flags & TOPIC_SYSTEM) BADSCRIPT((char*)"TOPIC-? Don't need SHARE on SYSTEM topic %s, it is already shared via system\r\n",currentTopicName)
+=======
+			if (flags & TOPIC_SHARE && flags & TOPIC_SYSTEM) 
+				BADSCRIPT((char*)"TOPIC-? Don't need SHARE on SYSTEM topic %s, it is already shared via system\r\n",currentTopicName)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			topicFlagsDone = true; //   topic flags must occur before list of keywords
 			++parenLevel;
 			break;
@@ -4507,7 +4712,11 @@ static char* ReadTopic(char* ptr, FILE* in,unsigned int build)
 				else if (!stricmp(word,(char*)"priority"))  flags |= TOPIC_PRIORITY; 
 				else if (!stricmp(word,(char*)"random")) flags |= TOPIC_RANDOM;
 				else if (!stricmp(word,(char*)"repeat")) flags |= TOPIC_REPEAT; 
+<<<<<<< HEAD
 				else if (!stricmp(word,(char*)"safe")) flags |= -1 ^TOPIC_SAFE;
+=======
+				else if (!stricmp(word,(char*)"safe")) flags |= TOPIC_SAFE;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				else if (!stricmp(word,(char*)"share")) flags |= TOPIC_SHARE;
 				else if (!stricmp(word,(char*)"stay")) 
 				{
@@ -4856,6 +5065,43 @@ static char* ReadReplace(char* ptr, FILE* in, unsigned int build)
 	return ptr;
 }
 
+<<<<<<< HEAD
+=======
+static char* ReadIgnoreSpell(char* ptr, FILE* in, unsigned int build)
+{
+    while (ALWAYS) //   read as many tokens as needed to complete the definition (must be within same file)
+    {
+        char ignore[MAX_WORD_SIZE];
+        ptr = ReadNextSystemToken(in, ptr, ignore, false);
+        if (!stricmp(ignore, (char*)"ignorespell:")) ptr = ReadNextSystemToken(in, ptr, ignore, false); // keep going with local ignore loop
+        if (!*ignore) break;	//   file ran dry
+        if (TopLevelUnit(ignore)) //   definition ends when another major unit starts
+        {
+            ptr -= strlen(ignore); //   let someone else see this starter 
+            break;
+        }
+        if (TopLevelUnit(ignore)) //   definition ends when another major unit starts
+        {
+            ptr -= strlen(ignore); //   let someone else see this starter 
+            break;
+        }
+        if (*ignore == '*' && !ignore[1])
+        {
+            nospellcheck = true;
+            continue;
+        }
+        if (*ignore == '!' && ignore[1] == '*' && !ignore[2])
+        {
+            nospellcheck = false;
+            continue;
+        }
+        WORDP D = StoreWord(ignore, 0);
+        if (!(D->internalBits & HAS_SUBSTITUTE)) D->internalBits |= DO_NOISE;
+    }
+    return ptr;
+}
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 static char* ReadPrefer(char* ptr, FILE* in, unsigned int build)
 {
 	while (ALWAYS) //   read as many tokens as needed to complete the definition (must be within same file)
@@ -5099,7 +5345,12 @@ static void ReadTopicFile(char* name,uint64 buildid) //   read contents of a top
 		else if (!stricmp(word,(char*)"concept:")) ptr = ReadConcept(ptr,in,build);
 		else if (!stricmp(word,(char*)"query:")) ptr = ReadQuery(ptr,in,build);
 		else if (!stricmp(word,(char*)"replace:")) ptr = ReadReplace(ptr,in,build);
+<<<<<<< HEAD
 		else if (!stricmp(word, (char*)"prefer:")) ptr = ReadPrefer(ptr, in, build);
+=======
+        else if (!stricmp(word, (char*)"ignorespell:")) ptr = ReadIgnoreSpell(ptr, in, build);
+        else if (!stricmp(word, (char*)"prefer:")) ptr = ReadPrefer(ptr, in, build);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		else if (!stricmp(word,(char*)"canon:")) ptr = ReadCanon(ptr,in,build);
 		else if (!stricmp(word,(char*)"topic:"))  ptr = ReadTopic(ptr,in,build);
 		else if (!stricmp(word,(char*)"plan:"))  ptr = ReadPlan(ptr,in,build);
@@ -5481,7 +5732,11 @@ static void EmptyVerify(char* name, uint64 junk)
 int ReadTopicFiles(char* name,unsigned int build,int spell)
 {
 	int resultcode = 0;
+<<<<<<< HEAD
 
+=======
+    nospellcheck = false;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	undefinedCallThreadList = 0;
 	isDescribe = false;
 	*botheader = 0;
@@ -5641,6 +5896,10 @@ int ReadTopicFiles(char* name,unsigned int build,int spell)
 	fclose(mapFile); 
 	EndScriptCompiler();
 	StartFile((char*)"Post compilation Verification");
+<<<<<<< HEAD
+=======
+    nospellcheck = false;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 	// verify errors across all files
 	DoubleCheckSetOrTopic();	//   prove all sets/topics he used were defined

@@ -39,7 +39,10 @@ a.i. artificial+intelligence
  meds medications
  real_estate real_estate
  board_of_directors board_of_directors
+<<<<<<< HEAD
  im I+am
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  1am 1+am
  2am 2+am
  3am 3+am
@@ -546,7 +549,11 @@ prof. professor
  carry_out_an_evaluation_of evaluate
  CD_'s CDs
  cease_and_desist cease
+<<<<<<< HEAD
  cellphone cell+phone
+=======
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  cemataries cemetaries
  cematary cemetary
  Century century
@@ -861,7 +868,11 @@ prof. professor
  how_ya_doing how+are+you+doing
  hows how+is
  hygenic hygienic
+<<<<<<< HEAD
  i'ts it's
+=======
+ i'ts it+is
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  i-Pad iPad
  i-Phone iPhone
  I_,_myself_, I

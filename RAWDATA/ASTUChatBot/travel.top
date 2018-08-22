@@ -1,0 +1,23 @@
+topic: ~lost repeat keep []    
+
+?: ([hey hi hello  i am] lost  ) [Hello] [Hi] [Hey], I will help to go back to astu if you are in adama. Just tell me where you are now?
+
+^respond(~question)
+
+u: (be * at _*)
+
+    OK, you want to go from \" '_0 \" to astu (Yes or No).
+
+    a: (~yes)
+
+      Just goto franco and you will find tax to astu.
+
+       ^respond(~question)
+
+   a: (~no)
+
+       OK, so where are you?
+
+u: (be * at _*)
+
+    OK, you want to go from \" '_0 \" to astu (Yes or No).

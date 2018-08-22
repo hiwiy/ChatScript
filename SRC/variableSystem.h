@@ -20,11 +20,20 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 
 #define ILLEGAL_MATCHVARIABLE -1
 
+<<<<<<< HEAD
 #define MAX_WILDCARDS 20  // _0 ... _20 inclusive
+=======
+#define MAX_WILDCARDS 30  // _0 ... _30 inclusive
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #define WILDCARD_START(x) (x & 0x0000ffff)
 #define WILDCARD_END(x) ( x >> 16)
 extern  unsigned int modifiedTraceVal;
 extern bool	modifiedTrace;
+<<<<<<< HEAD
+=======
+extern unsigned int modifiedTimingVal;
+extern bool modifiedTiming;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 extern  int wildcardIndex;
 extern char wildcardOriginalText[MAX_WILDCARDS+1][MAX_USERVAR_SIZE+1];  //   spot wild cards can be stored

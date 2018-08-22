@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+ nebuliser nebulizer
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  accessorise accessorize
  accessorised accessorized
  accessorises accessorizes
@@ -1137,6 +1141,10 @@
  patronisingly patronizingly
  pedalled pedaled
  pedalling pedaling
+<<<<<<< HEAD
+=======
+ paycheque paycheck
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  pedestrianisation pedestrianization
  pedestrianise pedestrianize
  pedestrianised pedestrianized

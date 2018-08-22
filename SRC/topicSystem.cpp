@@ -1138,15 +1138,26 @@ FunctionResult ProcessRuleOutput(char* rule, unsigned int id,char* buffer,bool r
 	unsigned int oldtrace = trace;
 	unsigned int oldtiming = timing;
 	bool traceChanged = false;
+<<<<<<< HEAD
+=======
+	bool timingChanged = false;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if ( GetDebugRuleMark(currentTopicID,id))  
 	{
 		trace = (unsigned int) -1; 
 		traceChanged = true;
 	}
+<<<<<<< HEAD
 	if (GetTimingRuleMark(currentTopicID, id))
 	{
 		timing = ((unsigned int)-1 ^ TIME_ALWAYS) | (oldtiming & TIME_ALWAYS);
 		traceChanged = true;
+=======
+	if (GetTimingRuleMark(currentTopicID,id))
+	{
+		timing = ((unsigned int)-1 ^ TIME_ALWAYS) | (oldtiming & TIME_ALWAYS);
+		timingChanged = true;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	}
 	uint64 start_time = ElapsedMilliseconds();
 
@@ -1187,11 +1198,18 @@ FunctionResult ProcessRuleOutput(char* rule, unsigned int id,char* buffer,bool r
 	bool oldErase = ruleErased; // allow underling gambits to erase themselves. If they do, we dont have to.
 	ruleErased = false;
 
+<<<<<<< HEAD
  #ifndef DISCARDTESTING
     CALLFRAME* frame = GetCallFrame(globalDepth);
     char rulename[200];
     *rulename = 0;
     char* paren = strchr(frame->label, '(');
+=======
+    CALLFRAME* frame = GetCallFrame(globalDepth);
+    char rulename[200];
+    *rulename = 0;
+    char* paren = (frame && frame->label) ? strchr(frame->label, '(') : NULL;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     if (paren)
     {
         *paren = '{';
@@ -1203,7 +1221,10 @@ FunctionResult ProcessRuleOutput(char* rule, unsigned int id,char* buffer,bool r
         sprintf(rulename,"%s.%d.%d{}", GetTopicName(currentTopicID), TOPLEVELID(id), REJOINDERID(id)); 
         ChangeDepth(1, rulename, false, ptr);
     }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	Output(ptr,buffer,result);
 	if (*buffer == '`') buffer = strrchr(buffer,'`') + 1; // skip any output already put out
     if (!paren) ChangeDepth(-1, rulename, false, ptr);
@@ -1279,9 +1300,19 @@ FunctionResult ProcessRuleOutput(char* rule, unsigned int id,char* buffer,bool r
 	if (traceChanged) 
 	{
 		trace = (modifiedTrace) ? modifiedTraceVal : oldtrace;
+<<<<<<< HEAD
 		timing = oldtiming;
 	}
 	else if (modifiedTrace) trace = modifiedTraceVal;
+=======
+	}
+	else if (modifiedTrace) trace = modifiedTraceVal;
+	if (timingChanged)
+	{
+		timing = (modifiedTiming) ? modifiedTimingVal : oldtiming;
+	}
+	else if (modifiedTiming) trace = modifiedTimingVal;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	norejoinder = oldnorejoinder;
 
     return result;
@@ -1303,12 +1334,27 @@ FunctionResult TestRule(int ruleID,char* rule,char* buffer,bool refine)
 	unsigned int oldIterator = currentIterator;
 	currentIterator = 0;
 	unsigned int oldtrace = trace;
+<<<<<<< HEAD
 	bool traceChanged = false;
 	if (GetDebugRuleMark(currentTopicID, ruleID))
+=======
+	unsigned int oldtiming = timing;
+	bool traceChanged = false;
+	bool timingChanged = false;
+	if (GetDebugRuleMark(currentTopicID,ruleID)) 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	{
 		trace = (unsigned int) -1 ;
 		traceChanged = true;
 	}
+<<<<<<< HEAD
+=======
+	if (GetTimingRuleMark(currentTopicID,ruleID))
+	{
+		timing = ((unsigned int)-1 ^ TIME_ALWAYS) | (oldtiming & TIME_ALWAYS);
+		timingChanged = true;
+	}
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	++ruleCount;
     FunctionResult result = NOPROBLEM_BIT;
 	int start = 0;
@@ -1345,7 +1391,11 @@ retry:
 		Log(STDTRACELOG,(char*)"\r\n");
 	}
 	int whenmatched = 0;
+<<<<<<< HEAD
 	if (*ptr == '(') // pattern requirement
+=======
+    if (*ptr == '(') // pattern requirement
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	{
 		wildcardIndex = 0;
 		int uppercasem = 0;
@@ -1420,11 +1470,22 @@ retry:
 	}
 exit:
 	ChangeDepth(-1,id,true); // rule
+<<<<<<< HEAD
 	currentIterator = oldIterator;
 	
 	if (traceChanged) trace = (modifiedTrace) ? modifiedTraceVal : oldtrace;
 	else if (modifiedTrace) trace = modifiedTraceVal;
 	return result; 
+=======
+    ++rulesExecuted;
+    currentIterator = oldIterator;
+	
+	if (traceChanged) trace = (modifiedTrace) ? modifiedTraceVal : oldtrace;
+	else if (modifiedTrace) trace = modifiedTraceVal;
+	if (timingChanged) timing = (modifiedTiming) ? modifiedTimingVal : oldtiming;
+	else if (modifiedTiming) timing = modifiedTimingVal;
+	return result;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 }
 
 static int RuleID(int type,char* ptr)
@@ -1917,7 +1978,11 @@ bool ReadUserTopics()
 			block->topicFlags |= TOPIC_USED; 
 			int size = (int) block->topicBytesRules; // how many bytes of data in memory
 			bool ignore = false;
+<<<<<<< HEAD
 			if ((block->topicChecksum && checksum != block->topicChecksum) || size < bytes) ignore = true; // topic changed or has shrunk = discard our data
+=======
+			if ((block->topicChecksum && checksum != block->topicChecksum && checksum) || size < bytes) ignore = true; // topic changed or has shrunk = discard our data
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			unsigned char* bits = block->topicUsed;
 			unsigned char* startbits = bits;
 			while (*at != ' ') // til byte marks used up
@@ -2438,6 +2503,27 @@ static void AddRecursiveInternal(WORDP D,unsigned int intbits,bool dictionaryBui
 	}
 }
 
+<<<<<<< HEAD
+=======
+static void InsureSafeSpellcheck(char* word)
+{
+    if (!word || !*word) return;
+    // Spellcheck should not harm keywords or components of keywords. Insure some mark exists.
+    // Spellcheck can adjust case without causing recognition damage.
+    WORDP X = FindWord(word, 0, LOWERCASE_LOOKUP);
+    if (X && (X->properties & TAG_TEST || X->systemFlags & PATTERN_WORD)) return;
+    WORDP Y = FindWord(word, 0, UPPERCASE_LOOKUP);
+    if (Y && (Y->properties & TAG_TEST || Y->systemFlags & PATTERN_WORD)) return;
+    char data[MAX_WORD_SIZE];
+    MakeLowerCopy(data, word);
+    WORDP Z;
+    size_t len = strlen(data);
+    if (data[len-1] == 's') Z = StoreWord(data); // dont force uppercase on plurals like Cousins
+    else Z = StoreWord(word);
+    if (Z) AddSystemFlag(Z, PATTERN_WORD);
+}
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 void InitKeywords(const char* fname,const char* layer,unsigned int build,bool dictionaryBuild,bool concept)
 { 
 	char word[MAX_WORD_SIZE];
@@ -2596,7 +2682,12 @@ void InitKeywords(const char* fname,const char* layer,unsigned int build,bool di
 					else AddProperty(D,NOUN_SINGULAR);
 				}
 			}
+<<<<<<< HEAD
 			else if (IsAlphaUTF8(p1[0])) AddSystemFlag(D,PATTERN_WORD); // blocks spell checking to something else
+=======
+            // dont protect upper case that has lowercase. spell check will leave it anyway (Children as starter of a title)
+			else if (IsAlphaUTF8(p1[0]) && !FindWord(p1, 0, LOWERCASE_LOOKUP)) AddSystemFlag(D,PATTERN_WORD); // blocks spell checking to something else
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			
 			unsigned int index = Meaning2Index(U);
 			if (index) U = GetMaster(U); // if not currently the master, switch to master
@@ -2621,7 +2712,10 @@ void InitKeywords(const char* fname,const char* layer,unsigned int build,bool di
 				if (D->internalBits & UPPERCASE_HASH)
 				{
 					size_t len = strlen(D->word);
+<<<<<<< HEAD
 					if (D->word[len-1] != 's') AddProperty(D,NOUN|NOUN_PROPER_SINGULAR); // could have been plural for all we know
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 					char* underscore = strchr(D->word,'_');
 					if (underscore) 
 					{
@@ -2637,7 +2731,37 @@ void InitKeywords(const char* fname,const char* layer,unsigned int build,bool di
 						}
 					}
 				}
+<<<<<<< HEAD
 			}
+=======
+                // insure whole word safe from spell check
+                char* space = strchr(D->word, ' ');
+                char* underscore = strchr(D->word, '_');
+                if (!space && !underscore) InsureSafeSpellcheck(D->word); // rrotect whole word
+
+                                                                          // insure pieces safe from spellcheck
+                char sep = 0;
+                if (space && underscore) { ; }
+                else if (space) sep = ' ';
+                else sep = '_';
+                if (sep && !(D->internalBits & UPPERCASE_HASH))
+                {
+                    char word[MAX_WORD_SIZE];
+                    strcpy(word, D->word);
+                    char* at = word;
+                    char* old = word;
+                    while ((at = strchr(at, sep))) // break apart into pieces.
+                    {
+                        *at++ = 0;
+                        size_t len = strlen(old);
+                        if (IsAlphaUTF8DigitNumeric(old[len - 1])) // no ending punctuation
+                            InsureSafeSpellcheck(old);
+                        old = at;
+                    }
+                    if (*old) InsureSafeSpellcheck(old);
+                }
+            }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			else // recurse on concept
 			{
 				if (type || sys || parse || required)
@@ -2939,7 +3063,11 @@ FunctionResult LoadLayer(int layer,const char* name,unsigned int build)
 	sprintf(filename,(char*)"canon%s.txt",name );
 	ReadCanonicals(filename,name);
 	WalkDictionary(IndirectMembers,build); // having read in all concepts, handled delayed word marks
+<<<<<<< HEAD
     worstDictAvail = maxDictEntries - Word2Index(dictionaryFree);
+=======
+    worstDictAvail = (int)(maxDictEntries - Word2Index(dictionaryFree));
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     worstFactFree = factEnd - factFree;
     if (layer != LAYER_BOOT)
 	{

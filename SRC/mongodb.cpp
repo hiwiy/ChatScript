@@ -86,6 +86,35 @@ eReturnValue EstablishConnection(	const char* pStrSeverUri, // eg "mongodb://loc
 	// Create a new client instance (user/script or interal/filesystem)
 	mongoc_client_t* myclient  = mongoc_client_new( pStrSeverUri );
 	if( myclient == NULL ) return eReturnValue_DATABASE_OPEN_CLIENT_CONNECTION_FAILED;
+<<<<<<< HEAD
+=======
+	
+	char* enableSSL = GetUserVariable("$mongo_enable_ssl");
+#ifdef JUNK
+	if(enableSSL != NULL && (stricmp(enableSSL,(char*)"true") == 0)) {
+		
+		char* validateSSL = GetUserVariable("$mongovalidatessl");
+		char* sslCAFile = GetUserVariable("$mongosslcafile");
+		char* sslPemFile = GetUserVariable("$mongosslpemfile");
+
+		const mongoc_ssl_opt_t *ssl_default = mongoc_ssl_opt_get_default ();
+		mongoc_ssl_opt_t ssl_opts = { 0 };
+		/* optionally copy in a custom trust directory or file; otherwise the default is used. */
+		memcpy (&ssl_opts, ssl_default, sizeof ssl_opts);
+		if(sslPemFile != NULL && (stricmp(sslPemFile,(char*)"") != 0)) {
+			ssl_opts.pem_file = sslPemFile;
+		}
+		if(sslCAFile != NULL && (stricmp(sslCAFile,(char*)"") != 0)) {
+			ssl_opts.ca_file = sslCAFile;
+		}
+		if (validateSSL != NULL && stricmp(validateSSL,(char*)"true") != 0) {
+			ssl_opts.weak_cert_validation = true;
+		}
+		mongoc_client_set_ssl_opts (myclient, &ssl_opts);
+	}
+#endif
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (mycollect == &g_pCollection) g_pClient = myclient;  // script user
 	else g_filesysClient = myclient; // all 3 filesys collections use this client
 
@@ -212,6 +241,7 @@ FunctionResult mongoGetDocument(char* key,char* buffer,int limit,bool user)
     	uint64 starttime = ElapsedMilliseconds();
         
         psCursor = mongoc_collection_find(collection, MONGOC_QUERY_NONE, 0, 0, 0, psQuery, NULL, NULL);
+<<<<<<< HEAD
         uint64 endtime = ElapsedMilliseconds();
 	    unsigned int diff = (unsigned int)(endtime - starttime);
 	    unsigned int limit = 100;
@@ -223,6 +253,9 @@ FunctionResult mongoGetDocument(char* key,char* buffer,int limit,bool user)
 	    	sprintf(dbmsg,"%s Mongo Find took longer than expected for %s, time taken = %ums\r\n", GetTimeInfo(&ptm),key, diff);
 	    	Log(DBTIMELOG, dbmsg);
 	    }
+=======
+        
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
         if( psCursor == NULL )
         {
             eRetVal = eReturnValue_DATABASE_QUERY_FAILED;
@@ -248,6 +281,20 @@ FunctionResult mongoGetDocument(char* key,char* buffer,int limit,bool user)
                 }
             }
         }
+<<<<<<< HEAD
+=======
+		uint64 endtime = ElapsedMilliseconds();
+		unsigned int diff = (unsigned int)(endtime - starttime);
+		unsigned int limit = 100;
+		char* val = GetUserVariable("$db_timelimit");
+		if (*val) limit = unsigned(atoi(val));
+		if (diff >= limit){
+			char dbmsg[512];
+			struct tm ptm;
+			sprintf(dbmsg,"%s Mongo Find took longer than expected for %s, time taken = %ums\r\n", GetTimeInfo(&ptm),key, diff);
+			Log(DBTIMELOG, dbmsg);
+		}
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     }while(false);
     
     FunctionResult result = NOPROBLEM_BIT;
@@ -332,7 +379,11 @@ FunctionResult mongoDeleteDocument(char* buffer)
 	    unsigned int limit = 100;
 		char* val = GetUserVariable("$db_timelimit");
 		if (*val) limit = unsigned(atoi(val));
+<<<<<<< HEAD
 	    if (diff <= limit){
+=======
+	    if (diff >= limit){
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	    	char dbmsg[512];
 	    	struct tm ptm;
 	    	sprintf(dbmsg,"%s Mongo Delete took longer than expected for %s, time taken = %ums\r\n", GetTimeInfo(&ptm),keyname, diff);
@@ -387,7 +438,11 @@ static FunctionResult MongoUpsertDoc(mongoc_collection_t* collection,char* keyna
     unsigned int limit = 100;
 	char* val = GetUserVariable("$db_timelimit");
 	if (*val) limit = unsigned(atoi(val));
+<<<<<<< HEAD
     if (diff <= limit){
+=======
+    if (diff >= limit){
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     	char dbmsg[512];
     	struct tm ptm;
     	sprintf(dbmsg,"%s Mongo Upsert took longer than expected for %s, time taken = %ums\r\n", GetTimeInfo(&ptm),keyname, diff);

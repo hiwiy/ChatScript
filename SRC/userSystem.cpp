@@ -415,9 +415,17 @@ char* WriteUserVariables(char* ptr,bool sharefile, bool compiled,char* saveJSON)
 
 	unsigned int varthread = userVariableThreadList;
 	bool traceseen = false;
+<<<<<<< HEAD
 	char word[MAX_WORD_SIZE];
 
 	if (modifiedTrace) trace = modifiedTraceVal; // script set the value
+=======
+	bool timingseen = false;
+	char word[MAX_WORD_SIZE];
+
+	if (modifiedTrace) trace = modifiedTraceVal; // script set the value
+	if (modifiedTiming) timing = modifiedTimingVal; // script set the value
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	while (varthread)
 	{
 		unsigned int* cell = (unsigned int*)Index2Heap(varthread);
@@ -459,6 +467,15 @@ char* WriteUserVariables(char* ptr,bool sharefile, bool compiled,char* saveJSON)
 				sprintf(word,(char*)"%u",(unsigned int)trace);
 				val = word;
 			}
+<<<<<<< HEAD
+=======
+			if (!stricmp(D->word, "$cs_time"))
+			{
+				timingseen = true;
+				sprintf(word, (char*)"%u", (unsigned int)timing);
+				val = word;
+			}
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (!val) val = ""; // for null variables being marked as traced
 			if (D->internalBits & MACRO_TRACE) 
 			{
@@ -481,6 +498,14 @@ char* WriteUserVariables(char* ptr,bool sharefile, bool compiled,char* saveJSON)
 		sprintf(ptr,(char*)"$cs_trace=%d\r\n",trace);
 		ptr += strlen(ptr);
 	}
+<<<<<<< HEAD
+=======
+	if (!timingseen)
+	{
+		sprintf(ptr, (char*)"$cs_time=%d\r\n", timing);
+		ptr += strlen(ptr);
+	}
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 	// now put out the function tracing bits
 	unsigned int index = tracedFunctionsIndex;

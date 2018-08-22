@@ -59,7 +59,11 @@ PuttyGen to generate a key from my keypair that WinSCP can use to authenticate i
 (non-trivial) that you can get a Putty terminal talking to your instance. You are going to need a few
 pieces of software on this machine.
 
+<<<<<<< HEAD
 To compile CS src, you will need to have Curl installed, which for some machines is:
+=======
+To compile CS src or even just to execute it, you will need to have Curl installed, which for some machines is:
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ```
 sudo yum -y install libcurl libcurl-devel
 ```

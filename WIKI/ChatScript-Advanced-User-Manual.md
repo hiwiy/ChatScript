@@ -1,6 +1,10 @@
 # ChatScript Advanced User's Manual
 © Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com<br>
+<<<<<<< HEAD
 <br>Revision 11/04/2017 cs7.61
+=======
+<br>Revision 8/12/2018 cs8.4
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 * [Review](ChatScript-Advanced-User-Manual.md#review-overview-of-how-cs-works)
 * [Advanced Tokenization](ChatScript-Advanced-User-Manual.md#advanced-tokenization)
@@ -1365,7 +1369,11 @@ override this if you define `$cs_looplimit` to have some value you prefer.
 
 ## `^loop`( n )
 
+<<<<<<< HEAD
 Loop can be given a count. This can be either a number, or you can use a factset id to
+=======
+Loop can be given a count. This can be either a number,  function call that results in a number, or you can use a factset id to
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 loop through each item of the factset via
 
    ^loop (@0)
@@ -1813,16 +1821,23 @@ You can see them and even change them during a volley,
 but they will always refresh back to their original values at the start of the next volley. 
 
 
+<<<<<<< HEAD
 ## Assigning match variables to user variables
 
     $$stuff = _0
 
+=======
+## Match Variables
+
+Match variables like `_5` are generally the result of using an underscore in a pattern match.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 Match variables hold 3 pieces of data 
 
 * original word(s) 
 * canonical word(s) 
 * position, range location of the word(s). 
 
+<<<<<<< HEAD
 User variables only have a single piece of data. 
 So onmassignment you lose 2 of the 3 pieces from the match variable. 
 You can choose which words (original or canonical) when you assign.
@@ -1841,6 +1856,36 @@ canonical values of the match variable the same, and the positional data is set 
 
 This is a transfer from one match variable to another, so no data is lost
 
+=======
+You can transfer part of Assigning match variables to user variables:
+```
+$$stuff = _0
+```
+
+but user variables only have a single piece of data. 
+So on assignment you lose 2 of the 3 pieces from the match variable. 
+You can choose which words (original or canonical) when you assign.
+```
+$$stuff = '_0 #  original words
+```
+    
+You can store positional data onto a different variable using `^position(start _0)` or
+```
+    ^position(end _0).
+    _0 = $$stuff
+```
+When you assign onto a match variable from a user variable, you make both original and
+canonical values of the match variable the same, and the positional data is set to 0.
+```
+    _0 = _10
+```
+This is a transfer from one match variable to another, so no data is lost.
+
+One unusual property of match variables is that they are not cleared between volleys. 
+This makes them the ONLY way you can pass data between volleys on a server where different users are involved.
+
+Note: Match variables have a 20,000 character limit.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## JSON dotted notation for variables
 
@@ -1942,6 +1987,12 @@ users. And returned output will go to the console and if a server, into the serv
 Note that when a user alters a system `$variable`, it will be refreshed back to its original
 value for each user.
 
+<<<<<<< HEAD
+=======
+If you create JSON data, you should probably use ^jsonlabel() to create unique names separate from the 
+normal json naming space.
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## `^CS_REBOOT()`
 
@@ -2035,9 +2086,23 @@ suppress those messages with `:build filename nosubstitution`
 
 ## Files
 
+<<<<<<< HEAD
 When you name a file or directory, :build will ignore files that end in ~ or .bak (the
 common backup names from editors on Windows and Linux).
 
+=======
+When you name a file or directory, :build will ignore files that do not end in .top or .tbl .
+When you name a directory, it walks all the files in that directory, but does not
+recurse into subdirectories unless you explicitly ask it to by adding a second slash after the
+directory name. If the contents of your filesxxx build file had this:
+```
+topic.top
+subdirectory1/
+subdirectory2//
+```
+then it would compile topic.top, all files within subdirectory1 non-recursively,
+and all files recursively in subdirectory2.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## Trace
 

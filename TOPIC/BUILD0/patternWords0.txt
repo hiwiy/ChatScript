@@ -12,6 +12,10 @@ fraudster
 greenwash
 ashame
 n00b
+<<<<<<< HEAD
+=======
+manners
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 multi
 childrens
 asshat
@@ -202,6 +206,10 @@ ragheads
 ruski
 sandnigger
 w0p
+<<<<<<< HEAD
+=======
+abs
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 folks
 step-father
 step-sister
@@ -243,6 +251,10 @@ paper-making
 kite-flying
 4chan
 pt
+<<<<<<< HEAD
+=======
+ai
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 puss
 match.com
 ettin
@@ -261,6 +273,10 @@ bozgor
 buckethead
 dogan
 dogun
+<<<<<<< HEAD
+=======
+lowlander
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 lugan
 ocker
 pikey
@@ -328,9 +344,16 @@ proddywhoddy
 proddywoddy
 suitemate
 sensei
+<<<<<<< HEAD
 spokespersonstick-in-the-mud
 councilor
 vice-president
+=======
+councilor
+vice-president
+fiancé
+fiancée
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 pharoh
 moonbow
 supercell

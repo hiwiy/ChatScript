@@ -154,6 +154,10 @@ bool CheckTopicTrace();
 bool CheckTopicTime();
 FunctionResult DoOutput(char* buffer,char* rule, unsigned int id, bool refine = false);
 unsigned int EstablishTopicTrace();
+<<<<<<< HEAD
+=======
+unsigned int EstablishTopicTiming();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 char* GetRuleIDFromText(char* ptr, int & id);
 char* GetVerify(char* tag,int & topicid, int &id);//  ~topic.#.#=LABEL<~topic.#.#  is a maximally complete why
 void UnwindUserLayerProtect();

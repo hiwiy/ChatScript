@@ -1,6 +1,10 @@
 #include "common.h" 
 #include "evserver.h"
+<<<<<<< HEAD
 char* version = "8.0";
+=======
+char* version = "8.4";
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 char sourceInput[200];
 FILE* userInitFile;
 int externalTagger = 0;
@@ -36,6 +40,10 @@ DEBUGAPI debugOutput = NULL;
 DEBUGAPI debugEndTurn = NULL;
 DEBUGLOOPAPI debugCall = NULL;
 DEBUGVARAPI debugVar = NULL;
+<<<<<<< HEAD
+=======
+DEBUGVARAPI debugMark = NULL;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 DEBUGAPI debugMessage = NULL;
 DEBUGAPI debugAction = NULL;
 #define MAX_RETRIES 20
@@ -170,7 +178,11 @@ int totalCounter = 0;							// protecting ^input from cycling
 char userPrefix[MAX_WORD_SIZE];			// label prefix for user input
 char botPrefix[MAX_WORD_SIZE];			// label prefix for bot output
 
+<<<<<<< HEAD
 bool unusedRejoinder;							// inputRejoinder has been executed, blocking further calls to ^Rejoinder
+=======
+bool unusedRejoinder = true;							// inputRejoinder has been executed, blocking further calls to ^Rejoinder
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	
 char inputCopy[INPUT_BUFFER_SIZE]; // the original input we were given, we will work on this
 
@@ -217,6 +229,10 @@ static void HandleBoot(WORDP boot, bool reboot)
 	if (boot && !noboot) // run script on startup of system. data it generates will also be layer 1 data
 	{
 		int oldtrace = trace;
+<<<<<<< HEAD
+=======
+		int oldtiming = timing;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		if (*bootcmd)
 		{
 			char* at = bootcmd;
@@ -247,6 +263,10 @@ static void HandleBoot(WORDP boot, bool reboot)
 			ReturnToAfterLayer(2, false);  // dict/fact/strings reverted and any extra topic loaded info  (but CSBoot process NOT lost)
 		}
 		trace = (modifiedTrace) ? modifiedTraceVal : oldtrace;
+<<<<<<< HEAD
+=======
+		timing = (modifiedTiming) ? modifiedTimingVal : oldtiming;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		stackFree = stackStart; // drop any possible stack used
 	}
 	rebooting = false;
@@ -555,6 +575,10 @@ static void ProcessArgument(char* arg)
 	else if (!strnicmp(arg,(char*)"outputsize=",11)) outputsize = atoi(arg+11); // bytes avail for log buffer
 	else if (!stricmp(arg, (char*)"time")) timing = (unsigned int)-1 ^ TIME_ALWAYS;
 	else if (!strnicmp(arg,(char*)"bootcmd=",8)) strcpy(bootcmd,arg+8); 
+<<<<<<< HEAD
+=======
+    else if (!strnicmp(arg, (char*)"authorize", 9)) overrideAuthorization = true;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	else if (!strnicmp(arg,(char*)"dir=",4))
 	{
 #ifdef WIN32
@@ -1003,6 +1027,12 @@ unsigned int InitSystem(int argcx, char * argvx[],char* unchangedPath, char* rea
 	echo = false;
 
 	InitStandalone();
+<<<<<<< HEAD
+=======
+#ifdef PRIVATE_CODE
+    PrivateInit(privateParams);
+#endif
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #ifndef DISCARDMYSQL
 	if (mysqlconf) MySQLUserFilesCode(); //Forked must hook uniquely AFTER forking
 #endif
@@ -1015,9 +1045,12 @@ unsigned int InitSystem(int argcx, char * argvx[],char* unchangedPath, char* rea
 	if (*mongodbparams)  MongoSystemInit(mongodbparams);
 #endif
 
+<<<<<<< HEAD
 #ifdef PRIVATE_CODE
 	PrivateInit(privateParams); 
 #endif
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	EncryptInit(encryptParams);
 	DecryptInit(decryptParams);
 	ResetEncryptTags();
@@ -1450,7 +1483,11 @@ void ResetSentence() // read for next sentence to process from raw system level 
 void ComputeWhy(char* buffer,int n)
 {
 	strcpy(buffer,(char*)"Why:");
+<<<<<<< HEAD
 	buffer += strlen(buffer);
+=======
+	buffer += 4;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	int start = 0;
 	int end = responseIndex;
 	if (n >= 0) 
@@ -1497,7 +1534,11 @@ void ComputeWhy(char* buffer,int n)
 			}
 		}
 		strcpy(buffer,(char*)" ");
+<<<<<<< HEAD
 		buffer += strlen(buffer);
+=======
+		buffer += 1;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	}
 }
 
@@ -1507,12 +1548,21 @@ static void FactizeResult() // takes the initial given result
     tokenControl |= LEAVE_QUOTE;
     tokenControl &= -1 ^ SPLIT_QUOTE;
 	char* limit;
+<<<<<<< HEAD
+=======
+    char* buffer = AllocateBuffer();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     // WARNING-- tokenize uses current user settings and
     // SHOULD be more independent -
 	for (int i = 0; i < responseIndex; ++i) 
     {
 		unsigned int order = responseOrder[i];
+<<<<<<< HEAD
 		char* ptr = responseData[order].response;
+=======
+        strcpy(buffer, responseData[order].response);
+		char* ptr = buffer;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
         if (!*ptr) continue;
         if (i == 0) ptr = SkipOOB(ptr); // no facts out of oob data
 		
@@ -1554,6 +1604,10 @@ static void FactizeResult() // takes the initial given result
 		}	
 	}
 	tokenControl = control;
+<<<<<<< HEAD
+=======
+    FreeBuffer();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 }
 
 static void ConcatResult(char* result,char* limit)
@@ -1602,7 +1656,11 @@ void FinishVolley(char* incoming,char* output,char* postvalue,int limit)
 	// massage output going to user
 	if (!documentMode)
 	{
+<<<<<<< HEAD
 		FactizeResult();
+=======
+        if (!(responseControl & RESPONSE_NOFACTUALIZE)) FactizeResult();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		postProcessing = 1;
 		++outputNest; 
 		OnceCode((char*)"$cs_control_post",postvalue);
@@ -1623,6 +1681,7 @@ void FinishVolley(char* incoming,char* output,char* postvalue,int limit)
 		if (*incoming) strcpy(timePrior,GetMyTime(curr)); // when we did the last volley
 		// Log the results
 		GetActiveTopicName(activeTopic); // will show currently the most interesting topic
+<<<<<<< HEAD
 		if (userLog && prepareMode != POS_MODE && prepareMode != PREPARE_MODE  && prepareMode != TOKENIZE_MODE)
 		{
 			char buff[20000];
@@ -1642,6 +1701,36 @@ void FinishVolley(char* incoming,char* output,char* postvalue,int limit)
 			else 
 			{
 				Log(STDUSERLOG,(char*)"%sRespond: user:%s bot:%s ip:%s (%s) %d  %s ==> %s  When:%s %s %s\r\n",nl,loginID,computerID,callerIP,activeTopic,volleyCount,incoming,Purify(output),when,buff,time15);  // normal volley
+=======
+        
+        size_t len = strlen(output);
+        char* buff = output + len + 1;
+        *buff++ = (char)0xfe; // positive termination
+        *buff++ = (char)0xff; // positive termination for servers
+        *buff = 0;
+        if (responseIndex && regression != NORMAL_REGRESSION) ComputeWhy(buff, -1);
+        size_t len1 = strlen(buff) + 1;
+        buff += len1;
+        strcpy(buff, activeTopic); // currently the most interesting topic
+
+        if (userLog && prepareMode != POS_MODE && prepareMode != PREPARE_MODE  && prepareMode != TOKENIZE_MODE)
+		{
+            char time15[MAX_WORD_SIZE];
+            unsigned int lapsedMilliseconds = (unsigned int)(ElapsedMilliseconds() - volleyStartTime);
+            *time15 = 0;
+            sprintf(time15, (char*)" F:%d ", lapsedMilliseconds);
+			
+            char* nl = (LogEndedCleanly()) ? (char*) "" : (char*) "\r\n";
+            char* poutput = Purify(output);
+			if (*incoming && regression == NORMAL_REGRESSION) Log(STDTRACELOG,(char*)"%s(%s) %s ==> %s %s\r\n",nl,activeTopic,TrimSpaces(incoming),poutput,buff); // simpler format for diff
+			else if (!*incoming) 
+			{
+				Log(STDUSERLOG,(char*)"%sStart: user:%s bot:%s ip:%s rand:%d (%s) %d ==> %s  When:%s %s Version:%s Build0:%s Build1:%s 0:%s F:%s P:%s %s\r\n",nl,loginID,computerID,callerIP,randIndex,activeTopic,volleyCount,poutput,when,buff,version,timeStamp[0],timeStamp[1],timeturn0,timeturn15,timePrior,buff); // conversation start
+			}
+			else 
+			{
+				Log(STDUSERLOG,(char*)"%sRespond: user:%s bot:%s ip:%s (%s) %d  %s ==> %s  When:%s %s %s\r\n",nl,loginID,computerID,callerIP,activeTopic,volleyCount,incoming,poutput,when,buff,time15);  // normal volley
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			}
 			if (shortPos) 
 			{
@@ -1701,12 +1790,21 @@ int PerformChat(char* user, char* usee, char* incoming,char* ip,char* output) //
     // protective level 0 callframe
     globalDepth = -1;
     ChangeDepth(1, ""); // never enter debugger on this
+<<<<<<< HEAD
     
+=======
+    rulesExecuted = 0;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     pendingUserReset = false;
 	volleyStartTime = ElapsedMilliseconds(); // time limit control
 	timerCheckInstance = 0;
 	modifiedTraceVal = 0;
 	modifiedTrace = false;
+<<<<<<< HEAD
+=======
+	modifiedTimingVal = 0;
+	modifiedTiming = false;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (server && servertrace) trace = -1;
 	myBot = 0;
 	if (!documentMode) {
@@ -1841,7 +1939,10 @@ int PerformChat(char* user, char* usee, char* incoming,char* ip,char* output) //
 			else fact = Meaning2Word(F->subject)->word;
 		}
 
+<<<<<<< HEAD
 		ReportBug((char*) "No such bot  %s - %s - %s status: %s", user, usee, incoming,fact);
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		ReadComputerID(); // presume default bot log file
 		CopyUserTopicFile("nosuchbot");
 		if (nosuchbotrestart) pendingRestart = true;
@@ -1914,12 +2015,15 @@ int PerformChat(char* user, char* usee, char* incoming,char* ip,char* output) //
 
 	// compute response and hide additional information after it about why
 	FinishVolley(mainInputBuffer,output,NULL,outputsize); // use original input main buffer, so :user and :bot can cancel for a restart of concerasation
+<<<<<<< HEAD
 	char* after = output + strlen(output) + 1;
 	*after++ = (char)0xfe; // positive termination
 	*after++ = (char)0xff; // positive termination for servers
 	ComputeWhy(after,-1);
 	after += strlen(after) + 1;
 	strcpy(after,activeTopic); // currently the most interesting topic
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #ifndef DISCARDJAVASCRIPT
 	DeleteTransientJavaScript(); // unload context if there
 #endif
@@ -2694,6 +2798,11 @@ void PrepareSentence(char* input,bool mark,bool user, bool analyze,bool oobstart
 	if (prepareMode == PREPARE_MODE || prepareMode == TOKENIZE_MODE) mytrace = 0;
 	ResetSentence();
 	ResetTokenSystem();
+<<<<<<< HEAD
+=======
+    ClearWhereInSentence();
+    ClearTriedData();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 	char* ptr = input;
 	tokenFlags |= (user) ? USERINPUT : 0; // remove any question mark

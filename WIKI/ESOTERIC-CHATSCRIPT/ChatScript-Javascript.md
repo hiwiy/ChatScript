@@ -105,22 +105,37 @@ function fib(n) {
     return fib(n-1) + fib(n-2);
 }
 
+<<<<<<< HEAD
 function test(i) {
      var res = [];
      for (i = 0; i < 5; i++) {
+=======
+function test(j) {
+     var res = [];
+     for (i = 0; i < j; i++) {
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
      res.push(fib(i));
      }
  print(res.join(' '));
 }
 
 topic: ~keywordless()
+<<<<<<< HEAD
 u: (test) ^testx(4)
+=======
+u: (test) ^testx(5)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ````
 
 In the above example, if the `~keywordless` topic sees an input of `test` it will call
+<<<<<<< HEAD
 `^testx` with a value of four. This will cause the javascript to be loaded and the 
 javascript function `test` called with an integer value 4. This will,
+=======
+`^testx` with a value of five. This will cause the javascript to be loaded and the 
+javascript function `test` called with an integer value 5. This will,
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 in turn, print out on the console `0 1 1 2 3` (but since that is not ChatScript output
 the system will move on to some other rule to try to generate output).
  

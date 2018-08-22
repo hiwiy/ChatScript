@@ -192,7 +192,11 @@ unsigned int GetIthSpot(WORDP D,int i, int& start, int& end)
     return start;
 }
 
+<<<<<<< HEAD
 unsigned int GetNextSpot(WORDP D,int start,int &startPosition,int& endPosition, bool reverse)
+=======
+unsigned int GetNextSpot(WORDP D,int start,int &startPosition,int& endPosition, bool reverse,int legalgap)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 {//   spot can be 1-31,  range can be 0-7 -- 7 means its a string, set last marker back before start so can rescan
 	//   BUG - we should note if match is literal or canonical, so can handle that easily during match eg
 	//   '~shapes matches square but not squares (whereas currently literal fails because it is not ~shapes
@@ -221,7 +225,11 @@ unsigned int GetNextSpot(WORDP D,int start,int &startPosition,int& endPosition, 
 		{
 			if (at < start) // valid. but starts far from where we are
 			{
+<<<<<<< HEAD
 				startPosition = at;
+=======
+                startPosition = at; // bug fix backward gaps as well
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				endPosition = end;
 				uppercaseFind = (data[i + 2] << 24) | (data[i+3]<<16) | (data[i+4]<<8) | (data[i + 5]);
 				continue; // find the CLOSEST without going over
@@ -231,6 +239,13 @@ unsigned int GetNextSpot(WORDP D,int start,int &startPosition,int& endPosition, 
 		else if (at > start)
 		{
 			if (at == 0xff) return 0; // end of data going forward
+<<<<<<< HEAD
+=======
+            if (legalgap)
+            {
+                if ((at - start) > legalgap) return 0; // too far away and optional
+            }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			startPosition = at;
 			endPosition = end;
 			uppercaseFind = (data[i + 2] << 24) | (data[i + 3] << 16) | (data[i + 4] << 8) | (data[i + 5]);
@@ -468,7 +483,13 @@ void MarkMeaningAndImplications(int depth, int exactWord,MEANING M,int start, in
 			sprintf(word,(char*)"%s~~",X->word);
 			MarkWordHit(depth, exactWord, FindWord(word, 0, PRIMARY_CASE_ALLOWED),0,start,end); // direct reference in a pattern
 			if (!ind) break;	// has no meaning index
+<<<<<<< HEAD
 			T = GetMeanings(X)[ind];
+=======
+			MEANING* meanings = GetMeanings(X);
+			if (!meanings) break;
+			T = meanings[ind];
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (!T) break;
 			if ((T & MEANING_BASE) == (M & MEANING_BASE)) break; // end of loop
 			++n;
@@ -484,7 +505,16 @@ static void HuntMatch(bool canonical, char* word,bool strict,int start, int end,
 	WORDP set[20];
 	WORDP D;
 	int oldtrace = trace;
+<<<<<<< HEAD
 	int i = GetWords(word,set,strict); // words in any case and with mixed underscore and spaces
+=======
+    // if user typed upper case specifically, trust him
+    if (start == end && start != 1 && IsUpperCase(word[0]))
+    {
+        if (!IsUpperCase(word[1])) strict = true;
+    }
+    int i = GetWords(word,set,strict); // words in any case and with mixed underscore and spaces
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	while (i) 
 	{
 		D = set[--i];
@@ -521,6 +551,11 @@ static void SetSequenceStamp() //   mark words in sequence, original and canonic
 	char* originalbuffer = AllocateStack(NULL,INPUT_BUFFER_SIZE); // includes typos
 	char* canonbuffer = AllocateStack(NULL,INPUT_BUFFER_SIZE);
 	wordlist = 0;
+<<<<<<< HEAD
+=======
+    char* limit = GetUserVariable("$cs_sequence");
+    int sequenceLimit = (*limit) ? atoi(limit) : SEQUENCE_LIMIT;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	unsigned int oldtrace = trace;
 	unsigned int usetrace = trace;
 	if (trace & TRACE_PREPARE || prepareMode == PREPARE_MODE) 
@@ -625,7 +660,11 @@ static void SetSequenceStamp() //   mark words in sequence, original and canonic
 			HuntMatch(true,canonbuffer,(tokenControl & STRICT_CASING) ? true : false,i,i+k,usetrace);
 			HuntMatch(false,originalbuffer,(tokenControl & STRICT_CASING) ? true : false,i,i+k,usetrace);
 			if (logCount != logbasecount && usetrace)  Log(STDTRACELOG,(char*)"\r\n"); // if we logged something, separate
+<<<<<<< HEAD
 			if (++index >= SEQUENCE_LIMIT) break; //   up thru 5 words in a phrase
+=======
+			if (++index >= sequenceLimit) break; //   up thru 5 words in a phrase
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			logbasecount = logCount;
 		}
 	}

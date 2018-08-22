@@ -54,18 +54,30 @@ function fib(n) {
     return fib(n-1) + fib(n-2);
 }
 
+<<<<<<< HEAD
 function test(i) {
      var res = [];
      for (i = 0; i &lt; 5; i++) {
+=======
+function test(j) {
+     var res = [];
+     for (i = 0; i &lt; j; i++) {
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
      res.push(fib(i));
      }
  print(res.join(&#39; &#39;));
 }
 
 topic: ~keywordless()
+<<<<<<< HEAD
 u: (test) ^testx(4)
 </code></pre>
 <p>In the above example, if the <code>~keywordless</code> topic sees an input of <code>test</code> it will call <code>^testx</code> with a value of four. This will cause the javascript to be loaded and the javascript function <code>test</code> called with an integer value 4. This will, in turn, print out on the console <code>0 1 1 2 3</code> (but since that is not ChatScript output the system will move on to some other rule to try to generate output).</p>
+=======
+u: (test) ^testx(5)
+</code></pre>
+<p>In the above example, if the <code>~keywordless</code> topic sees an input of <code>test</code> it will call <code>^testx</code> with a value of five. This will cause the javascript to be loaded and the javascript function <code>test</code> called with an integer value 5. This will, in turn, print out on the console <code>0 1 1 2 3</code> (but since that is not ChatScript output the system will move on to some other rule to try to generate output).</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <h2 id="notes-restrictions">Notes &amp; Restrictions</h2>
 <p>Currently the javascript is presumed correct (not verified by CS during <code>:build</code>). When the code is evaled, if there is an error, the rule making the outputmacro call will fail, but you have no indication of where in the javascript your code was in error.</p>
 <p>Likewise there are nominal limits of 1500 bytes for a string argument or return value. These are not enforced at present, so you could damage the system if you exceed that. In the future restrictions and debuggability will be improved.</p>

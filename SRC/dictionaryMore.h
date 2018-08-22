@@ -20,6 +20,7 @@
 // these values of word->internalBits are NOT stored in the dictionary text files but are generated while reading in data
 
 // various sources of livedata substitions 
+<<<<<<< HEAD
 //	used 	0x00000001 
 //	used	0x00000002
 //	used	0x00000004
@@ -28,6 +29,19 @@
 //	used	0x00000020 
 //	used	0x00000040 
 //	used	0x00000080 
+=======
+// These are on tokencontrol, enabling substitutions
+// various sources of livedata substitions 
+// the original word will have this flag | HAS_SUBSTITUTE
+//	used 	0x00000001 # DO_ESSENTIALS
+//	used	0x00000002 # DO_SUBSTITUTES
+//	used	0x00000004 # DO_CONTRACTIONS
+//	used	0x00000008 # DO_INTERJECTIONS
+//	used	0x00000010 # DO_BRITISH
+//	used	0x00000020 # DO_SPELLING
+//	used	0x00000040 # DO_TEXTING
+//	used	0x00000080 # DO_NOISE -- without HAS_SUBSTITUTE this is a script compiler flag to disable warnings on spelling
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 //	used	0x00000100 thru PRIVATE
 
 #define QUERY_KIND				0x00000200		// is a query item (from LIVEDATA or query:)

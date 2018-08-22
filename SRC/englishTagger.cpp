@@ -113,6 +113,10 @@ static int predicateZone; // where is main verb found
 static unsigned int currentZone;
 static unsigned int ambiguous;
 static bool ResolveByStatistic(int i,bool &changed);
+<<<<<<< HEAD
+=======
+static void SetRole(int i, uint64 role, bool revise = false, int currentVerb = verbStack[roleIndex]);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 #ifdef JUNK
 Subject complements are after linking verbs. We label noun complements as direct objects and adjective complements as subject_complement.
@@ -1258,11 +1262,19 @@ static void InitRoleSentence(int start, int end)
 
     startStack[0] = (unsigned char)startSentence;
     objectRef[0] = objectRef[MAX_SENTENCE_LENGTH - 1] = 0;
+<<<<<<< HEAD
+=======
+#ifndef DISCARDPARSER
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     if (*wordStarts[start] == '"' && parseFlags[start + 1] & QUOTEABLE_VERB) // absorb quote reference into sentence
     {
         SetRole(start, MAINOBJECT, true);
     }
+<<<<<<< HEAD
 
+=======
+#endif
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     if (trace & TRACE_POS) Log(STDTRACELOG, (char*)"  *** Sentence start: %s (%d) to %s (%d)\r\n", wordStarts[startSentence], startSentence, wordStarts[endSentence], endSentence);
 }
 
@@ -3087,8 +3099,12 @@ static void Tags(char* buffer, int i)
 
 char* DumpAnalysis(int start, int end,uint64 flags[MAX_SENTENCE_LENGTH],const char* label,bool original,bool roleDisplay)
 {
+<<<<<<< HEAD
 	static char buffer[BIG_WORD_SIZE];
 	*buffer = 0;
+=======
+	char* buffer = AllocateBuffer();
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	char* ambiguous = "";
 	char* faultyparse = "";
 	if (!original && tokenFlags & FAULTY_PARSE) faultyparse = "badparse "; // only one of ambiguous (worse) and faultyparse will be true
@@ -3172,7 +3188,12 @@ char* DumpAnalysis(int start, int end,uint64 flags[MAX_SENTENCE_LENGTH],const ch
 	}
 
 	strcat(buffer,(char*)"\r\n");
+<<<<<<< HEAD
 	return buffer;
+=======
+	FreeBuffer();
+	return buffer; // released, be careful
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 }
 
 void MarkTags(unsigned int i)
@@ -3232,8 +3253,13 @@ void MarkTags(unsigned int i)
 			else if (bit & WEB_URL && strchr(originalLower[i]->word+1,'@'))
 			{
 				char* x = strchr(originalLower[i]->word+1,'@');
+<<<<<<< HEAD
 				if (x && IsAlphaUTF8(x[1])) MarkMeaningAndImplications(0, 0,MakeMeaning(StoreWord((char*)"~email_url")),start,stop);
 			}
+=======
+                if (x && IsAlphaUTF8OrDigit(x[1])) MarkMeaningAndImplications(0, 0, MakeMeaning(StoreWord((char*)"~email_url")), start, stop);
+            }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			else if (bit & MARK_FLAGS)  MarkMeaningAndImplications(0, 0,sysMeanings[j],start,stop);
 			bit >>= 1;
 		}
@@ -3764,7 +3790,11 @@ static void AddRole( int i, uint64 role)
 	if (trace & TRACE_POS) Log(STDTRACELOG,(char*)"   +%s->%s\r\n",wordStarts[i],GetRole(roles[i]));
 }
 
+<<<<<<< HEAD
 void SetRole( int i, uint64 role,bool revise, int currentVerb)
+=======
+static void SetRole( int i, uint64 role,bool revise, int currentVerb)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 {
 	if (i < startSentence || i > endSentence) return; // precaution
 
@@ -4115,6 +4145,10 @@ static void MigrateObjects(int start, int end)
 			{
 				ExtendChunk(at, object, verbals);
 				if (phrase) ExtendChunk(at, object, phrases);
+<<<<<<< HEAD
+=======
+				if (at == objectRef[at]) break;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				at = objectRef[at]; // extend to cover HIS object if he is gerund or infintiive
 			}
 		}
@@ -4122,9 +4156,16 @@ static void MigrateObjects(int start, int end)
 		{
 			at = i;
 			// see if it has an object also...spread to cover that...
+<<<<<<< HEAD
 			while (at && (object = objectRef[at]) && object > at)
 			{
 				ExtendChunk(at, object, clauses);
+=======
+			while (at && (object = objectRef[at]) && object > at )
+			{
+				ExtendChunk(at, object, clauses);
+				if (objectRef[object] == at) break; // bad loop
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				at = objectRef[object]; // extend to cover HIS object
 			}
 		}
@@ -4138,6 +4179,10 @@ static void MigrateObjects(int start, int end)
 			while (at && (object = objectRef[at]) && object > at)
 			{
 				ExtendChunk(at, object, phrases);
+<<<<<<< HEAD
+=======
+				if (at == objectRef[at]) break;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				at = objectRef[at]; // extend to cover HIS object
 			}
 		}

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,7 +13,11 @@
 </head>
 <body>
 <h1 id="chatscript-basic-user-manual">ChatScript Basic User Manual</h1>
+<<<<<<< HEAD
 <p>© Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com <br>Revision 9/24/2017 cs7.55</p>
+=======
+<p>© Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com <br>Revision 2/18/2018 cs8.1</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <ul>
 <li><a href="ChatScript-Basic-User-Manual.html#overview">Overview</a></li>
 <li><a href="ChatScript-Basic-User-Manual.html#simple-topics">Simple Topics</a></li>
@@ -419,6 +427,11 @@ s: (~baseball) I’m not that into sports like baseball. </code></pre>
 <pre><code>u: ( Can I go back )</code></pre>
 <p>is wrong and will not match anything and should be</p>
 <pre><code>u: ( can I go back ) </code></pre>
+<<<<<<< HEAD
+=======
+<h2 id="contractions">Contractions</h2>
+<p>ChatScript automatically expands contractions. DO NOT put contractions in your patterns. You will break the expansion of that contraction.</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <h2 id="proper-names">Proper names</h2>
 <p>You should always put multiple-word proper names in double quotes, particularly ones with embedded punctuation. You want CS to know that the entire phrase is considered a single entity. So</p>
 <pre><code>u: ( &quot;Dr. Watson&quot; )
@@ -556,8 +569,13 @@ For temple:
 <pre><code>?: ( do you eat _~meat ) No, I hate _0.</code></pre>
 <p>If the input is do you eat ham the output would be No, I hate ham. Of course, the value of <code>_0</code> is only guaranteed for the execution of this rule. Match variables may be clobbered when you execute another rule. Or they may last for a while.</p>
 <p>At most it will last for the duration of the current volley (several sentences maybe) after which it should be presumed trashed. Whenever you start a volley, you should presume match variables all hold unknown junk.</p>
+<<<<<<< HEAD
 <p>You are allowed <code>_0</code> through <code>_20</code>.</p>
 <p>I often use the <code>_10</code> to <code>_20</code> range as &quot;safe&quot; variables for the duration of a volley, because I will never match that many variables in a single sentence. I am unlikely to even match more than 5. So I can dedicate them any way I want to.</p>
+=======
+<p>You are allowed <code>_0</code> through <code>_30</code>.</p>
+<p>I often use the above <code>_10</code> range as &quot;safe&quot; variables for the duration of a volley, because I will never match that many variables in a single sentence. I am unlikely to even match more than 5. So I can dedicate them any way I want to.</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <p>When the system memorizes your underscore match, it stores both the original word, its canonical form, and the position of the text. On output, by default you get the canonical form. If you want the original form, you must precede your reference with an apostrophe.</p>
 <pre><code>?: ( do you eat _ [ ham eggs bacon] ) I eat &#39;_0.</code></pre>
 <p>If the input is do you eat eggs the output is I eat eggs. Had I not used the apostrophe, the output would have been I eat egg.</p>

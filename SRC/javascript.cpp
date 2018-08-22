@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#include "common.h"
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #ifndef DISCARDJAVASCRIPT
 #include "duktape/duktape.h"
 //#include "duktape/duktape.cpp"
@@ -71,6 +75,7 @@ FunctionResult RunJavaScript(char* definition, char* buffer, unsigned int args)
 	bool compile = false;
 	if (!stricmp(word,"compile")) 
 	{
+<<<<<<< HEAD
 		code = ReadCompiledWord(code,word);
 		compile = true; // compile vs eval
 		if (!*code) return FAILRULE_BIT; // require some code
@@ -78,6 +83,16 @@ FunctionResult RunJavaScript(char* definition, char* buffer, unsigned int args)
 	else if (!stricmp(word,"eval")) 
 	{
 		if (!*code) return FAILRULE_BIT; // require some code
+=======
+		char* ptr = ReadCompiledWord(code,word);
+		compile = true; // compile vs eval
+		if (!*ptr) return FAILRULE_BIT; // require some code
+	}
+	else if (!stricmp(word,"eval")) 
+	{
+		char* ptr = ReadCompiledWord(code, word);
+		if (!*ptr) return FAILRULE_BIT; // require some code
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	}
 	else if (!*name) return FAILRULE_BIT;	// need to define someting, be it a compile or a call
 	

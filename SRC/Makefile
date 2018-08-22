@@ -70,7 +70,11 @@ debugmysqlserver: CFLAGS=-c -std=c++11 -Wall  -funsigned-char  -Wno-write-string
 
 executable.mongoserver=../BINARIES/ChatScriptMongo
 mongoserver: DEFINES+= -DLOCKUSERFILE=1 -DEVSERVER=1 -DEVSERVER_FORK=1 -DDISCARDPOSTGRES=1 -DDISCARDMYSQL=1
+<<<<<<< HEAD
 mongoserver: PGLOAD= -pthread
+=======
+mongoserver: PGLOAD= -pthread -lmongoc-1.0 -lbson-1.0
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 mongoserver: binary
 mongoserver: EXECUTABLE=$(executable.mongoserver)
 mongoserver: INCLUDEDIRS=-Iinclude -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0
@@ -123,7 +127,11 @@ endif
 ifeq ($(UNAME), Darwin)
 OSXRELEASE := $(shell defaults read loginwindow SystemVersionStampAsString)
 $(info ************ MAC VERSION $OSXRELEASE detected ************)
+<<<<<<< HEAD
 LDFLAGS=-mmacosx-version-min=$(OSXRELEASE) -lcurl $(PGLOAD)  
+=======
+LDFLAGS=-mmacosx-version-min=$(OSXRELEASE) -lcurl -L/usr/local/lib $(PGLOAD)  
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 CFLAGS=-mmacosx-version-min=$(OSXRELEASE) -c  -Wall  -funsigned-char -Wno-write-strings -Wno-char-subscripts 
 endif
 

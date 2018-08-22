@@ -582,8 +582,13 @@ unsigned int Query(char* kind, char* subjectword, char* verbword, char* objectwo
 		Log(STDTRACETABLOG,(char*)" control: %s  s/v/o:[%s %s %s] count:%d ",control,subjectword,verbword,objectword,count);   
 		if (*fromset != '?') Log(STDTRACELOG,(char*)"fromset:%s ",fromset);   
 		if (*toset != '?') Log(STDTRACELOG,(char*)"toset:%s ",toset);   
+<<<<<<< HEAD
 		if (*propogate != '?') Log(STDTRACELOG,(char*)"propogate:%s",propogate);   
 		if (*match != '?') Log(STDTRACELOG,(char*)"match:%s",match);   
+=======
+		if (*propogate != '?') Log(STDTRACELOG,(char*)"propogate:%s ",propogate);   
+		if (*match != '?') Log(STDTRACELOG,(char*)"match:%s ",match);   
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		Log(STDTRACELOG,(char*)"\r\n");   
 		Log(STDTRACETABLOG,(char*)"");
 	}
@@ -966,6 +971,12 @@ nextsearch:  //   can do multiple searches, thought they have the same basemark 
 	bool sentences = false;
 	bool sentencev = false;
 	bool sentenceo = false;
+<<<<<<< HEAD
+=======
+	float rangelow = -20000.0;
+	float rangehigh = -20000.0;
+	char field = 0;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	unsigned int marks = 0, markv = 0, marko = 0;
 	unsigned int markns = 0, marknv = 0, markno = 0;
 	unsigned int rmarks = 0, rmarkv = 0, rmarko = 0;
@@ -1064,6 +1075,26 @@ nextsearch:  //   can do multiple searches, thought they have the same basemark 
 			baseFlags |= FINDCONCEPT;
 			break;
 		case '<':  case '>': 
+<<<<<<< HEAD
+=======
+			if (control[1] == '=') // range check
+			{
+				if (*control == '<')
+				{
+					rangelow = atof(propogate);
+					field = control[2];
+				}
+				else
+				{
+					rangehigh = atof(match);
+					field = control[2];
+				}
+				control += 2;
+				break;
+			}
+
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (trace & TRACE_QUERY  && CheckTopicTrace()) Log(STDTRACELOG,(char*)" propogate on verb #%c ",*control);
 			propogateVerb = baseMark + (*++control - '0'); //   label of verbs to propogate on
 			break;
@@ -1256,6 +1287,36 @@ nextsearch:  //   can do multiple searches, thought they have the same basemark 
 			if (sentences && !GetNextSpot(S,0,pStart,pEnd)) match = false;
 			if (sentencev && !GetNextSpot(V,0,pStart,pEnd)) match = false;
 			if (sentenceo && !GetNextSpot(O,0,pStart,pEnd)) match = false;
+<<<<<<< HEAD
+=======
+			if (rangelow != -20000.0)
+			{
+				float val;
+				char* word = NULL;
+				if (field == 's') word = S->word;
+				else if (field == 'v') word = V->word;
+				else if (field == 'o') word = O->word;
+				if (word && IsDigit(word[0]))
+				{
+					val = atof(word);
+					if (val < rangelow) match = false;
+				}
+			}
+			if (rangehigh != -20000.0)
+			{
+				float val;
+				char* word = NULL;
+				if (field == 's') word = S->word;
+				else if (field == 'v') word = V->word;
+				else if (field == 'o') word = O->word;
+				if (word && IsDigit(word[0]))
+				{
+					val = atof(word);
+					if (val > rangehigh) match = false;
+				}
+			}
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (factflags && !(G->flags & factflags)) 
 				match = false; // lacks appropriate fact flags
 			if (intersectMark && OTHER->inferMark != intersectMark) match = false;// we have not reached requested intersection

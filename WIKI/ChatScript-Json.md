@@ -1,6 +1,10 @@
 # ChatScript JSON Manual
 © Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 1/31/2018 cs8.0
+=======
+<br>Revision 8/12/2018 cs8.4
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 # Real World JSON
 
@@ -200,6 +204,14 @@ nominally, because it is considered a single token.
 You can bypass this limit by asking the tokenizer to directly process OOB data, returning the JSON structure name instead of all the content. Just enable `#JSON_DIRECT_FROM_OOB`  on the `$cs_token` value and if it finds OOB data that is entirely JSON, it will parse it and return something like `jo-t1` or `ja-t1` in its place. Eg.
 `[ { "key": "value} ]` will return tokenized as `[jo-t1]`.
 
+<<<<<<< HEAD
+=======
+```
+u: GIVEN_JSON(< \[  _* \] ^JsonKind('_0)) $$json = '_0 # tokenizer returns transient JSON as object name
+```
+then you can do $$json.field directly.
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 Note: `^jsonparse` autoconverts backslash-unnnn into corresponding the utf8 characters.
 
 
@@ -287,8 +299,13 @@ You may omit the leading . of a path and CS will by default assume it
 ## Direct access via JSON variables `$myvar.field` and `$myvar[]
 
 If a variable holds a JSON object value, you can directly set and get from fields of that object
+<<<<<<< HEAD
 using dotted notation. This can be a fixed static fieldname you give or a variable value:
  `$myvar.$myfield` is legal.
+=======
+using dotted notation. This can be a fixed static fieldname you give or a user variable value or a match variable value (quoted or unquoted):
+ `$myvar.$myfield` is legal, as is `$myvar._0` or `$myvar.'_0`.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 Dotted notation is cleaner and faster than `^jsonpath` and `jsonobjectinsert` and for get, has
 the advantage that it never fails, it only returns null if it can't find the field. 
@@ -307,6 +324,12 @@ Similarly you can access JSON arrays using array notation:
 $x = $$array[5]
 $x = $$array[$_tmp]
 $$obj.name[4] += 3
+<<<<<<< HEAD
+=======
+$$obj.$_kind[4] += 3
+$$obj._0[4] += 3
+$$obj.'_0[4] += 3
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ```
 
 ```
@@ -455,7 +478,11 @@ supplying `level`. Level 0 is all. Level 1 is the top level of data. Etc.
 
 assigns a text sequence to add to jo- and ja- items created thereafter. See System functions manual.
 
+<<<<<<< HEAD
 ### `^jsonreadcsv`( TAB filepath {'^fn})
+=======
+### `^readfile`( TAB filepath {'^fn}) and `^readfile`( LINE filepath '^fn)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 reads a tsv (tab delimited spreadsheet file) and returns a JSON array representing it. The lines are all objects in an array.
 The line is an object where non-empty fields are given as field indexes. The first field is 0. Empty fields are skipped over and their number omitted.
@@ -465,6 +492,13 @@ Instead it calls the function with each field of a line being an argument. This 
 in that you can potentially read large amounts of data in a single volley and may need to use `^memorymark` and
 `^memoryfree` to manage the issue.
 
+<<<<<<< HEAD
+=======
+`^readfile ( LINE filepath 'function)` reads a file and passes each line untouched as the sole argument to the function.
+
+Formerly called ^readfile (still accepted).
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ### `^jsonundecodestring`( string ) 
 
 removes all json escape markers back to normal for possible printout
@@ -495,6 +529,7 @@ A sample call might be:
 ```
 $$url = "https://api.github.com/users/test/repos"
 $$user_agent = ^"User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)"
+<<<<<<< HEAD
 
 ^jsonopen(GET $$url "" $$user_agent)
 ```
@@ -504,6 +539,15 @@ As an example of a complex header value you might create neatly,
 ```
 $header = ^"Authorization: 8daWs-dwQPpXkuzJO0o
 ~Accept: application/json
+=======
+^jsonopen(GET $$url "" $$user_agent)
+```
+where GitHub requires user-agent data. Use `http://` and `https://` in front of your urls.
+
+As an example of a complex header value you might create neatly,
+```
+$header = ^"Accept: application/json
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ~Accept-Encoding: identity,*;q=0
 ~Accept-Language: en-US,en;q=0.5
 ~Cache-Control: no-cache
@@ -577,6 +621,15 @@ buffer without being checked.
 
 ^JSONopen automatically url-encodes headers and urls 
 
+<<<<<<< HEAD
+=======
+#### `JSONOpen and local files`
+
+JSONOpen is a wrapper around `Curl` library, so you can use as an url
+a local file reference like `file:///c:/myfile.txt`. The file, of course, should be
+a JSON text string.
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #### `JSONOpen and proxy servers`
 
 If you need JSONOpen to run thru a proxy server, these are the CS variables you need to set up:

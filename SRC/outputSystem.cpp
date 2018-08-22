@@ -371,7 +371,11 @@ void StdNumber(char* word,char*& buffer,int controls) // text numbers may have s
 {
 	size_t len = strlen(word);
 	char* ptr = word;
+<<<<<<< HEAD
     if ( IsAlphaUTF8(*ptr) || !IsDigitWord(word, AMERICAN_NUMBERS) || strchr(word,':')) // either its not a number or its a time - leave unchanged
+=======
+    if (IsAlphaUTF8(*ptr) || !IsDigitWord(word, AMERICAN_NUMBERS) || strchr(word,':')) // either its not a number or its a time - leave unchanged
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     {
         strcpy(buffer,word);  
 		if (controls & OUTPUT_NOUNDERSCORE)
@@ -392,6 +396,7 @@ void StdNumber(char* word,char*& buffer,int controls) // text numbers may have s
 		percent = true;
 	}
 
+<<<<<<< HEAD
 	int useNumberStyle = numberStyle;
 	if (controls & OUTPUT_NOCOMMANUMBER || len < 5) useNumberStyle = NOSTYLE_NUMBERS;
 
@@ -400,6 +405,23 @@ void StdNumber(char* word,char*& buffer,int controls) // text numbers may have s
 		if (!fullfloat) // insure is not full
 		{
 			char c = word[len];
+=======
+    char c = IsFloat(word, end);
+    if (c == 'e') // leave exponent numbers in original form. 
+    {
+        strcpy(buffer, word);
+        return;
+    }
+
+	int useNumberStyle = numberStyle;
+	if (controls & OUTPUT_NOCOMMANUMBER || len < 5) useNumberStyle = NOSTYLE_NUMBERS;
+
+	if (c == 1)
+	{
+		if (!fullfloat) // insure is not full
+		{
+			c = word[len];
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			word[len] = 0;
 			WriteFloat(buffer, atof(word), useNumberStyle);
 			word[len] = c;
@@ -898,6 +920,19 @@ static char* Output_Dollar(char* word, char* ptr, char* space,char*& buffer, uns
 			ptr = PerformAssignment(word,ptr,buffer,result); 
 		else
 		{
+<<<<<<< HEAD
+=======
+            char* at1 = word;
+            while (*at1 == '_' || *at1 == '$') ++at1;
+            while (IsLegalNameCharacter(*++at1)); // find real end of var
+            if (at1 && *at1)
+            {
+                *at1 = 0;
+                size_t len = at1 - word;
+                ptr = ptr - len;
+            }
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			char* value = GetUserVariable(word,nojson);
 			StdNumber(value,buffer,controls);
 			char* at = SkipWhitespace(buffer);

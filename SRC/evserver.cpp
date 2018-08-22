@@ -59,6 +59,10 @@ extern char dbTimeLogfileName[200];
 extern bool serverctrlz;
 #define CLIENT_CHUNK_LENGTH 4*1024
 #define HIDDEN_OVERLAP 103	// possible concealed data
+<<<<<<< HEAD
+=======
+#define HIDDEN_OFFSET 3 // past 2 ctrl z's
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 // server stuff
 string interface_g;
@@ -187,8 +191,13 @@ struct Client_t
                 return 0;
             }
 
+<<<<<<< HEAD
             Log(SERVERLOG, "evserver: send_data() could not send, errno: %s", strerror(errno));
 			(*printer)( "evserver: send_data() could not send, errno: %s", strerror(errno));
+=======
+            Log(SERVERLOG, "evserver: send_data(%d) could not send, errno: %s", len,strerror(errno));
+			(*printer)( "evserver: send_data(%d) could not send, errno: %s", len,strerror(errno));
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			return -1;
         }
 
@@ -626,7 +635,11 @@ int evsrv_do_chat(Client_t *client)
 	if (mysqlconf) MySQLUserFilesCode(); //Forked must hook uniquely AFTER forking
 #endif
 
+<<<<<<< HEAD
 	if (!client->data) 	client->data = (char*) malloc(outputsize);
+=======
+	if (!client->data) 	client->data = (char*) malloc(outputsize+8);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (!client->data) (*printer)("Malloc failed for child data\r\n");
 
 RESTART_RETRY:

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,7 +13,11 @@
 </head>
 <body>
 <h1 id="chatscript-advanced-users-manual">ChatScript Advanced User's Manual</h1>
+<<<<<<< HEAD
 <p>© Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com<br> <br>Revision 11/04/2017 cs7.61</p>
+=======
+<p>© Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com<br> <br>Revision 8/12/2018 cs8.4</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <ul>
 <li><a href="ChatScript-Advanced-User-Manual.html#review-overview-of-how-cs-works">Review</a></li>
 <li><a href="ChatScript-Advanced-User-Manual.html#advanced-tokenization">Advanced Tokenization</a></li>
@@ -646,7 +654,11 @@ t: ^loop () { This is forever, not. end(LOOP)}</code></pre>
 <p>The first gambit prints <em>Hello. me me me me me</em>. The second loop would print forever, but actually prints out This is forever, not. because after starting output, the loop is terminated.</p>
 <p>Loop also has a built in limit of 1000 so it will never run forever. You can override this if you define <code>$cs_looplimit</code> to have some value you prefer.</p>
 <h2 id="loop-n"><code>^loop</code>( n )</h2>
+<<<<<<< HEAD
 <p>Loop can be given a count. This can be either a number, or you can use a factset id to loop through each item of the factset via</p>
+=======
+<p>Loop can be given a count. This can be either a number, function call that results in a number, or you can use a factset id to loop through each item of the factset via</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <p>^loop (<span class="citation">@0</span>)</p>
 <h2 id="if-construct---if-or-if">If Construct - <code>if</code> or <code>^if</code></h2>
 <p>The if allows you to conditionally execute blocks of script. The full syntax is:</p>
@@ -836,14 +848,20 @@ In that case, you don't have a variable but you need to create one dynamically.<
 <p>See also Indirect Pattern Elements in <a href="ChatScript-Pattern-Redux.html">ChatScript Pattern Redux</a> manual.</p>
 <h2 id="bot-variables">Bot variables</h2>
 <p>You can also define variables that are &quot;owned&quot; by the bot. Any variables you create as part of layer 0 or layer 1 are always resident. As are any variables you define on the command line starting ChatScript. You can see them and even change them during a volley, but they will always refresh back to their original values at the start of the next volley.</p>
+<<<<<<< HEAD
 <h2 id="assigning-match-variables-to-user-variables">Assigning match variables to user variables</h2>
 <pre><code>$$stuff = _0</code></pre>
 <p>Match variables hold 3 pieces of data</p>
+=======
+<h2 id="match-variables">Match Variables</h2>
+<p>Match variables like <code>_5</code> are generally the result of using an underscore in a pattern match. Match variables hold 3 pieces of data</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <ul>
 <li>original word(s)</li>
 <li>canonical word(s)</li>
 <li>position, range location of the word(s).</li>
 </ul>
+<<<<<<< HEAD
 <p>User variables only have a single piece of data. So onmassignment you lose 2 of the 3 pieces from the match variable. You can choose which words (original or canonical) when you assign.</p>
 <pre><code>$$stuff = &#39;_0 - original words</code></pre>
 <p>You can store positional data onto a different variable using <code>^position(start _0)</code> or</p>
@@ -852,6 +870,20 @@ _0 = $$stuff</code></pre>
 <p>When you assign onto a match variable from a user variable, you make both original and canonical values of the match variable the same, and the positional data is set to 0.</p>
 <pre><code>_0 = _10</code></pre>
 <p>This is a transfer from one match variable to another, so no data is lost</p>
+=======
+<p>You can transfer part of Assigning match variables to user variables:</p>
+<pre><code>$$stuff = _0</code></pre>
+<p>but user variables only have a single piece of data. So on assignment you lose 2 of the 3 pieces from the match variable. You can choose which words (original or canonical) when you assign.</p>
+<pre><code>$$stuff = &#39;_0 #  original words</code></pre>
+<p>You can store positional data onto a different variable using <code>^position(start _0)</code> or</p>
+<pre><code>    ^position(end _0).
+    _0 = $$stuff</code></pre>
+<p>When you assign onto a match variable from a user variable, you make both original and canonical values of the match variable the same, and the positional data is set to 0.</p>
+<pre><code>    _0 = _10</code></pre>
+<p>This is a transfer from one match variable to another, so no data is lost.</p>
+<p>One unusual property of match variables is that they are not cleared between volleys. This makes them the ONLY way you can pass data between volleys on a server where different users are involved.</p>
+<p>Note: Match variables have a 20,000 character limit.</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <h2 id="json-dotted-notation-for-variables">JSON dotted notation for variables</h2>
 <p>If a variable holds a JSON object value, you can directly set and get from fields of that object using dotted notation.</p>
 <p>This can be a fixed static fieldname or a variable value- <code>$myvar.$myfield</code> is legal.</p>
@@ -914,6 +946,10 @@ u: () ^&quot;[oob data] Here is user message</code></pre>
 <h2 id="csboot"><code>^CSBOOT()</code></h2>
 <pre><code>outputmacro: ^CSBOOT()</code></pre>
 <p>This function, if defined by you, will be executed on startup of the ChatScript system. It is a way to dynamically add facts and user variables into the base system common to all users. And returned output will go to the console and if a server, into the server log Note that when a user alters a system <code>$variable</code>, it will be refreshed back to its original value for each user.</p>
+<<<<<<< HEAD
+=======
+<p>If you create JSON data, you should probably use ^jsonlabel() to create unique names separate from the normal json naming space.</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <h2 id="cs_reboot"><code>^CS_REBOOT()</code></h2>
 <pre><code>outputmacro: ^CS_REBOOT()</code></pre>
 <p>This function, if defined by you, will be executed on every volley prior to loading user data. It is executed as a user-level program which means when it has completed all newly created facts and Variables just disappear. It is used in conjunction with a call to the system function ^reboot() to replace data from a ^CSBOOT. Typically you would have the <code>^CS_REBOOT</code> function test some condition (results of a version stamp) and if the version currently loaded in the boot layer is current, it simply returns having done nothing. If the boot layer is not current, then you call ^REBOOT() which erases the current boot data and treats the remainder of the script as refilling the boot layer with new facts and variables.</p>
@@ -944,7 +980,15 @@ u: () ^&quot;[oob data] Here is user message</code></pre>
 <pre><code>topic: ~mytopic (cheese cheese~n)</code></pre>
 <p>Since you have accepted all forms of cheese, you don't need to name <code>cheese~n</code>. <code>:build</code> also warns you about various substitutions that might affect your patterns. You can suppress those messages with <code>:build filename nosubstitution</code></p>
 <h2 id="files">Files</h2>
+<<<<<<< HEAD
 <p>When you name a file or directory, :build will ignore files that end in ~ or .bak (the common backup names from editors on Windows and Linux).</p>
+=======
+<p>When you name a file or directory, :build will ignore files that do not end in .top or .tbl . When you name a directory, it walks all the files in that directory, but does not recurse into subdirectories unless you explicitly ask it to by adding a second slash after the directory name. If the contents of your filesxxx build file had this:</p>
+<pre><code>topic.top
+subdirectory1/
+subdirectory2//</code></pre>
+<p>then it would compile topic.top, all files within subdirectory1 non-recursively, and all files recursively in subdirectory2.</p>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 <h2 id="trace">Trace</h2>
 <p>Sometimes you might fail to place a paren properly, swallow a whole lot of input and crash. Finding where the problem is may be hard. You can therefore turn on a trace which will show you all the rules it successfully completes.</p>
 <pre><code>:build harry trace</code></pre>

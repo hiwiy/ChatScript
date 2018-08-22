@@ -7,6 +7,7 @@
  have_to_leave> ~emogoodbye
  wtf ~emomisunderstand
  bla_bla_bla ~emobored
+<<<<<<< HEAD
  <no. ~no # some people use no. for number in keywords
  bla ~emobored
  <oh? why?
@@ -15,6 +16,15 @@
  <no> ~no 
  <no_- ~no 
  <none ~no 
+=======
+ bla ~emobored
+ <oh? why?
+ <never> ~no 
+ <no_, ~no 
+ <no> ~no 
+ <no_- ~no 
+ <none> ~no 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
   <continue ~yes
  <make_it_so> ~yes
  <do_it> ~yes
@@ -87,7 +97,11 @@
  <but_just_a_minute_ago_you_said ~emoprotest
  <but_just_a_moment_ago_you_said ~emoprotest
  <but_just_a_second_ago_you_said ~emoprotest
+<<<<<<< HEAD
  <but_no ~no
+=======
+ <but_no> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <but_of_course ~yes
  <but_of_course_not ~no
  <but_previously_you_said ~emoprotest
@@ -95,7 +109,11 @@
  <but_you_just_said ~emoprotest
  <but_you_said ~emoprotest
  <by_all_means ~yes
+<<<<<<< HEAD
  <by_no_means ~no
+=======
+ <by_no_means> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <bye ~emogoodbye
  <bye_bye ~emogoodbye
  <can_not_argue_with_that ~yes
@@ -142,7 +160,11 @@
  <do_not_understand ~emomisunderstand
  <does_not_seem_likely> ~no
  <does_not_seem_possible> ~no
+<<<<<<< HEAD
  <doubtful ~no
+=======
+ <doubtful> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <eek ~emosurprise
  <eeugh ~emodisgust
  <eeuh ~emodisgust
@@ -178,7 +200,11 @@
  <generally ~yes
  <get_out> ~no
  <get_out_of_here ~emosurprise
+<<<<<<< HEAD
  <get_real ~no
+=======
+ <get_real> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <gidday ~emohello
  <go_ahead> ~yes
  <god_bless_you ~emogoodbye
@@ -215,7 +241,11 @@
  <hahahaha ~emolaugh
  <hahahahaha ~emolaugh
  <hallo ~emohello
+<<<<<<< HEAD
  <hardly ~no
+=======
+ <hardly> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <have_a_better_'un ~emogoodbye
  <have_a_good_one ~emogoodbye
  <have_a_good_evening ~emogoodbye
@@ -304,7 +334,11 @@
  <I_also> ~emomutual
  <I_am_afraid_I_disagree_with_you ~no
  <I_am_afraid_I_do_not_agree ~no
+<<<<<<< HEAD
  <I_am_afraid_not ~no
+=======
+ <I_am_afraid_not> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <I_am_bored_stiff ~emobored
  <I_am_bored_to_death ~emobored
  <I_am_bored_to_tears ~emobored
@@ -376,7 +410,11 @@
  <I_need_to_go_now ~emogoodbye
  <I_refuse> ~no
  <I_thank_you ~emothanks
+<<<<<<< HEAD
  <I_think_not ~no
+=======
+ <I_think_not> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <I_think_so ~yes
  <I_thought_you_said ~emoprotest
  <I_too> ~emomutual
@@ -388,8 +426,13 @@
  <I_would_not> ~no
  <if_you_say_so ~no
  <iie ~no
+<<<<<<< HEAD
  <impossible ~no
  <improbable ~no
+=======
+ <impossible> ~no
+ <improbable> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <in-fucking-credible ~emohappy
  <in_this_case> ~yes
  <inconceivable> ~no
@@ -399,7 +442,11 @@
  <is_everything_alright ~emohowzit
  <is_everything_OK ~emohowzit
  <it_is_highly_likely> ~yes
+<<<<<<< HEAD
  <it_is_not_possible ~no
+=======
+ <it_is_not_possible> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <it_is_unlikely> ~no
  <it_may_not_be_true> ~emomaybe
  <it_was_good_meeting_you ~emogoodbye
@@ -446,7 +493,11 @@
  <naturally> ~yes
  <naw ~no
  <nay ~no
+<<<<<<< HEAD
  <negative ~no
+=======
+ <negative> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <never_mind> ~no
  <never> ~no
  <nice_one ~emohappy
@@ -465,7 +516,11 @@
  <no_problem> ~yes
  <no_thank_you ~no
  <no_thanks ~no
+<<<<<<< HEAD
  <no_way ~no
+=======
+ <no_way> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <nod ~yes
  <nods ~yes
  <non_comprende ~emomisunderstand
@@ -548,7 +603,11 @@
  <right> ~yes
  <righto ~yes
  <righty-ho ~yes
+<<<<<<< HEAD
  <rubbish ~no
+=======
+ <rubbish> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <salutations ~emohello
  <say_that_again ~emomisunderstand
  <sayonara ~emogoodbye
@@ -557,7 +616,11 @@
  <see_you_soon ~emogoodbye
  <see_you_tomorrow ~emogoodbye
  <see_you> ~emogoodbye
+<<<<<<< HEAD
  <seldom ~no
+=======
+ <seldom> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <shure ~yes
  <si ~yes
  <smirk ~emolaugh
@@ -572,12 +635,19 @@
  <sorry_about_that ~emoapology
  <sorry_it_did_not_work_out ~emosad
  <sounds_wonderful ~yes
+<<<<<<< HEAD
  <strange ~no
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <supposedly ~yes
  <sure ~yes
  <sure_thing ~yes
  <surely ~yes
+<<<<<<< HEAD
  <surely_not ~no
+=======
+ <surely_not> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <surprise ~emosurprise
  <take_care ~emogoodbye
  <take_care_of_yourself ~emogoodbye
@@ -637,10 +707,16 @@
  <uh-huh ~yes
  <uh-uh ~no
  <uhuh ~no
+<<<<<<< HEAD
  <unbelievable ~no
  <undoubtedly ~yes
  <unfortunately_not ~no
  <unlikely ~no
+=======
+ <unbelievable> ~no
+ <undoubtedly ~yes
+ <unfortunately_not> ~no
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
  <unlikely> ~no
  <unquestionably ~yes
  <until_next_time ~emogoodbye

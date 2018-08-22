@@ -70,6 +70,10 @@ extern TestMode wasCommand;
 #define MAX_ARG_LIST 200
 #define MAX_CALL_DEPTH 400
 extern char* codeStart;
+<<<<<<< HEAD
+=======
+extern int rulesExecuted;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 extern char* realCode;
 extern unsigned int callIndex;
 extern WORDP callStack[MAX_CALL_DEPTH];
@@ -95,7 +99,11 @@ void DeletePermanentJavaScript();
 void DeleteTransientJavaScript();
 unsigned int MACRO_ARGUMENT_COUNT(unsigned char* defn);
 void DebugConcepts(int list, int wordindex);
+<<<<<<< HEAD
 
+=======
+FunctionResult FindRuleCode1(char* buffer, char* word);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 //   argument data for user calls
 char* InitDisplay(char* list);
 void RestoreDisplay(char** base, char* list);

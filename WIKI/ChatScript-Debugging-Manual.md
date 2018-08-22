@@ -1,6 +1,10 @@
 # ChatScript Debugging Manual
 © Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com<br>
+<<<<<<< HEAD
 <br>Revision 1/31/2018 cs8.0
+=======
+<br>Revision 8/12/2018 cs8.4
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 You've written script. It doesn't work. Now what? Now you need to debug it, fix it, and
 recompile it. Debugging is mostly a matter of tracing what the system does testpaand
@@ -186,6 +190,31 @@ didn't intend it. Words it doesn't recognize arise either because you made a typ
 Words in upper case are again words it knows as lower case, 
 but you used it as upper case. Maybe right or wrong.
 
+<<<<<<< HEAD
+=======
+### ignorespell: ... ###
+You can disable case spelling warnings for specific words by
+naming them in lower case like this:
+```
+ignorespell: me or
+```
+This will not warn you when the system detects `me` or `ME` (abbreviation of Maine).
+You can also globally turn off spell warnings using
+```
+ignorespell: *
+```
+which remains in effect until you do 
+```
+ignorespell: !*
+```
+
+You can, for example, fix all warnings you can in a file, And
+once you believe there are no more issues and the file is
+frozen, just turn ignorespell on at start of file and off at 
+end of file.
+
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 Editing the main dictionary is not a task for the faint-hearted. But ChatScript maintains
 secondary dictionaries in the `TOPIC` folder and those are easy to adjust. To alter them,
 you can define concepts that add local dictionary entries. The names of important word
@@ -770,6 +799,12 @@ Shows the dictionary hierarchy below a word or, if the word is name of a concept
 members of the concept. Since displaying down can subsume a lot of entries, you can
 specify how many levels down to display (n). The default is 1.
 
+<<<<<<< HEAD
+=======
+### `:allmembers ~concept ~notconcept ~notconcept1 ...`
+Dumps the members of ~concept into TMP/tmp.txt, one per line, but excludes any that are member of the ~nonconcept sets.
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ### `:findwords pattern`
 This uses the pattern of characters and * to name words and phrases in the dictionary
 matching it. E.g.

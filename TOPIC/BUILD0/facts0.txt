@@ -1,4 +1,8 @@
 ﻿$cs_trace=0
+<<<<<<< HEAD
+=======
+$cs_time=0
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #`end variables
 ( add inverse remainder )
 ( add inverse mod )

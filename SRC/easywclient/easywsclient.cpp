@@ -410,7 +410,14 @@ class _RealWebSocket : public easywsclient::WebSocket
         txbuf.insert(txbuf.end(), header.begin(), header.end());
         txbuf.insert(txbuf.end(), message_begin, message_end);
         if (useMask) {
+<<<<<<< HEAD
             for (size_t i = 0; i != message_size; ++i) { *(txbuf.end() - message_size + i) ^= masking_key[i&0x3]; }
+=======
+            size_t message_offset = txbuf.size() - message_size;
+            for (size_t i = 0; i != message_size; ++i) {
+                txbuf[message_offset + i] ^= masking_key[i&0x3];
+            }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
         }
     }
 
@@ -454,7 +461,11 @@ easywsclient::WebSocket::pointer from_url(const std::string& url, bool useMask, 
         fprintf(stderr, "ERROR: Could not parse WebSocket url: %s\n", url.c_str());
         return NULL;
     }
+<<<<<<< HEAD
     fprintf(stderr, "easywsclient: connecting: host=%s port=%d path=/%s\n", host, port, path);
+=======
+    //fprintf(stderr, "easywsclient: connecting: host=%s port=%d path=/%s\n", host, port, path);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     socket_t sockfd = hostname_connect(host, port);
     if (sockfd == INVALID_SOCKET) {
         fprintf(stderr, "Unable to connect to %s:%d\n", host, port);
@@ -480,11 +491,15 @@ easywsclient::WebSocket::pointer from_url(const std::string& url, bool useMask, 
         snprintf(line, 256, "Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==\r\n"); ::send(sockfd, line, strlen(line), 0);
         snprintf(line, 256, "Sec-WebSocket-Version: 13\r\n"); ::send(sockfd, line, strlen(line), 0);
         snprintf(line, 256, "\r\n"); ::send(sockfd, line, strlen(line), 0);
+<<<<<<< HEAD
         for (i = 0; i < 2 || (i < 255 && line[i-2] != '\r' && line[i-1] != '\n'); ++i) 
 		{ 
 			if (recv(sockfd, line+i, 1, 0) == 0) 
 				return NULL;  
 		}
+=======
+        for (i = 0; i < 2 || (i < 255 && line[i-2] != '\r' && line[i-1] != '\n'); ++i) { if (recv(sockfd, line+i, 1, 0) == 0) { return NULL; } }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
         line[i] = 0;
         if (i == 255) { fprintf(stderr, "ERROR: Got invalid status line connecting to: %s\n", url.c_str()); return NULL; }
         if (sscanf(line, "HTTP/1.1 %d", &status) != 1 || status != 101) { fprintf(stderr, "ERROR: Got bad status connecting to %s: %s", url.c_str(), line); return NULL; }
@@ -502,7 +517,11 @@ easywsclient::WebSocket::pointer from_url(const std::string& url, bool useMask, 
 #else
     fcntl(sockfd, F_SETFL, O_NONBLOCK);
 #endif
+<<<<<<< HEAD
     fprintf(stderr, "Connected to: %s\n", url.c_str());
+=======
+    //fprintf(stderr, "Connected to: %s\n", url.c_str());
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     return easywsclient::WebSocket::pointer(new _RealWebSocket(sockfd, useMask));
 }
 

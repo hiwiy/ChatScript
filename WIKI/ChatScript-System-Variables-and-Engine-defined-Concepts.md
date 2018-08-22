@@ -1,6 +1,10 @@
 # ChatScript System Variables and Engine-defined Concepts
 © Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 11/29/2017 cs7.71
+=======
+<br>Revision 6/9/2018 cs8.3
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 
 * [Engine-defined Concepts](ChatScript-System-Variables-and-Engine-defined-Concepts.md#engine-defined-concepts)
@@ -314,7 +318,11 @@ your server is in Virginia and you are in Colorado).
 | variable           | description 
 | --------           | ------------
 | `%inputrejoinder`  |  rule tag of any pending rejoinder for input or null if none pending
+<<<<<<< HEAD
 | `%lastoutput`      |  the text of the last generated response for the current volley  
+=======
+| `%lastoutput`      |  the text of the last generated response for the current volley - always null across volleys  
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 | `%lastquestion`    |  Boolean did last output end in a ?
 | `%outputrejoinder` |  rule tag if system set a rejoinder for its current output or 0
 | `%response`        |  number of committed responses that have been generated for this sentence (see Advanced User- Advanced Output: Committed Responses 

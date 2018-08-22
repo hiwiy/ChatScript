@@ -1,0 +1,22 @@
+concept: ~lounge ["teachers" "student" "central" "container" mestawot mirror mastawot mestawet ]
+
+topic: ~lounge keep repeat [lounge]
+
+u: (where is _* lounge) $lou='_0
+
+u: ($lou=teachers) It's at cyber. "Cyber is a place where fresh and female students go to use wifi"
+
+u: ($lou=student ) It's at anfi.
+
+u: ($lou=central ) It's around central library.
+
+u: ($lou=container) It's on the main rode of astu.
+
+u: ($lou=mestawot)  Infront of cse department.
+
+u: ($lou=mirror)  Infront of cse department.
+
+u: ($lou=mastawot)  Infront of cse department.
+
+u: ($lou=mestawet)  Infront of cse department.
+

@@ -184,6 +184,10 @@ void myexit(char* msg, int code)
 void mystart(char* msg)
 {
 	char name[MAX_WORD_SIZE];
+<<<<<<< HEAD
+=======
+    MakeDirectory(logs);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	sprintf(name, (char*)"%s/startlog.txt", logs);
 	FILE* in = FopenUTF8WriteAppend(name);
 	char word[MAX_WORD_SIZE];
@@ -1057,6 +1061,10 @@ void WalkDirectory(char* directory,FILEWALK function, uint64 flags,bool recursiv
     {
         if (FindFileData.dwFileAttributes  & FILE_ATTRIBUTE_DIRECTORY)
         {
+<<<<<<< HEAD
+=======
+            size_t len = strlen(FindFileData.cFileName);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
             if (recursive) seendirs = true;
         }
         else
@@ -1120,6 +1128,7 @@ void WalkDirectory(char* directory,FILEWALK function, uint64 flags,bool recursiv
 	for (unsigned int i = 0;i < files.size();i++) 
 	{
 		const char* file = files[i].c_str();
+<<<<<<< HEAD
 		if (*file != '.' && stricmp(file,(char*)"bugs.txt")) 
 		{
 			sprintf(name,(char*)"%s/%s",directory,file);
@@ -1127,6 +1136,15 @@ void WalkDirectory(char* directory,FILEWALK function, uint64 flags,bool recursiv
 		}
         sprintf(xname, "%s/%s", directory, file);
         if (isDirectory(xname)) seendirs = true;
+=======
+        size_t len = strlen(file);
+		if (*file != '.') 
+		{
+			sprintf(name,(char*)"%s/%s",directory,file);
+			(*function)(name,flags); // fails if directory
+            if (recursive && isDirectory(xname)) seendirs = true;
+		}
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
      }
 
     if (!seendirs) return;
@@ -1594,7 +1612,11 @@ void BugBacktrace(FILE* out)
 	int i = globalDepth;
 	char rule[MAX_WORD_SIZE];
     CALLFRAME* frame = GetCallFrame(i);
+<<<<<<< HEAD
 	if (*(frame->label)) 
+=======
+	if (frame && *(frame->label)) 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	{
 		rule[0] = 0;
 		if (currentRule) {
@@ -1604,10 +1626,17 @@ void BugBacktrace(FILE* out)
         CALLFRAME* priorframe = GetCallFrame(i - 1);
 		fprintf(out,"Finished %d: heapusedOnEntry: %d heapUsedNow: %d buffers:%d stackused: %d stackusedNow:%d %s ",
 			i,frame->heapDepth,(int)(heapBase-heapFree),frame->memindex,(int)(heapFree - (char*)releaseStackDepth[i]), (int)(stackFree-stackStart),frame->label);
+<<<<<<< HEAD
 		if (!TraceFunctionArgs(out, frame->label, (i > 0) ? priorframe->argumentStartIndex: 0, frame->argumentStartIndex)) fprintf(out, " - %s", rule);
 		fprintf(out, "\r\n");
 	}
 	while (--i > 0) 
+=======
+		if (priorframe && !TraceFunctionArgs(out, frame->label, (i > 0) ? priorframe->argumentStartIndex: 0, frame->argumentStartIndex)) fprintf(out, " - %s", rule);
+		fprintf(out, "\r\n");
+	}
+	while (--i > 1) 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	{
         frame = GetCallFrame(i);
 		strncpy(rule,frame->rule,50);
@@ -1635,9 +1664,21 @@ CALLFRAME* ChangeDepth(int value,char* name,bool nostackCutback, char* code)
     }
 	else if (value < 0) // leaving depth
 	{
+<<<<<<< HEAD
         CALLFRAME* frame = releaseStackDepth[globalDepth];
 #ifndef DISCARDTESTING
         if (globalDepth && *name && debugCall) (*debugCall)(name, false);
+=======
+        bool abort = false;
+        CALLFRAME* frame = releaseStackDepth[globalDepth];
+
+#ifndef DISCARDTESTING
+        if (globalDepth && *name && debugCall)
+        {
+            char* result = (*debugCall)(name, false);
+            if (result) abort = true;
+        }
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 #endif
 		if (frame->memindex  != bufferIndex)
 		{
@@ -1655,7 +1696,11 @@ CALLFRAME* ChangeDepth(int value,char* name,bool nostackCutback, char* code)
 		if (showDepth) Log(STDUSERLOG, (char*)"-depth %d %s bufferindex %d heapused:%d\r\n", globalDepth,name, bufferIndex,(int)(heapBase-heapFree));
         globalDepth += value;
         if (globalDepth < 0) { ReportBug((char*)"bad global depth in %s", name); globalDepth = 0; }
+<<<<<<< HEAD
         return NULL;
+=======
+        return (abort) ?  (CALLFRAME*)1 : NULL; // abort code
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     }
 	else // value > 0
 	{
@@ -2051,9 +2096,13 @@ unsigned int Log(unsigned int channel,const char * fmt, ...)
 		out =  FopenUTF8WriteAppend(fname);
  		if (!out) // see if we can create the directory (assuming its missing)
 		{
+<<<<<<< HEAD
 			char call[MAX_WORD_SIZE];
 			sprintf(call,(char*)"mkdir %s",users);
 			system(call);
+=======
+            MakeDirectory(users);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			out = userFileSystem.userCreate(fname);
 			if (!out && !inLog) ReportBug((char*)"unable to create user logfile %s", fname);
 		}
@@ -2064,9 +2113,13 @@ unsigned int Log(unsigned int channel,const char * fmt, ...)
 		out = FopenUTF8WriteAppend(fname);
  		if (!out) // see if we can create the directory (assuming its missing)
 		{
+<<<<<<< HEAD
 			char call[MAX_WORD_SIZE];
 			sprintf(call,(char*)"mkdir %s",logs);
 			system(call);
+=======
+            MakeDirectory(logs);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			out = userFileSystem.userCreate(fname);
 		}
 
@@ -2122,9 +2175,13 @@ unsigned int Log(unsigned int channel,const char * fmt, ...)
 		out = FopenUTF8WriteAppend(fname);
  		if (!out) // see if we can create the directory (assuming its missing)
 		{
+<<<<<<< HEAD
 			char call[MAX_WORD_SIZE];
 			sprintf(call,(char*)"mkdir %s",logs);
 			system(call);
+=======
+            MakeDirectory(logs);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			out = userFileSystem.userCreate(fname);
 		}
 

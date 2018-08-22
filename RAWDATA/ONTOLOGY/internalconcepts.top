@@ -39,5 +39,9 @@ concept: ~internal_concepts(
 ~fahrenheit ~celsius ~kelvin
 ~KINDERGARTEN ~GRADE1_2 ~GRADE3_4 ~GRADE5_6
 ~twitter_name ~hashtag_label ~email_url
+<<<<<<< HEAD
 
+=======
+~capacronym
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 )

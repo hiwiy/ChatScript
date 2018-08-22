@@ -1,6 +1,13 @@
 pandoc ../README.md -s -o ../README.pdf
 pandoc ChatScript-Advanced-User-Manual.md -s -o ../PDFDOCUMENTATION/ChatScript-Advanced-User-Manual.pdf
 pandoc ChatScript-Basic-User-Manual.md -s -o ../PDFDOCUMENTATION/ChatScript-Basic-User-Manual.pdf
+<<<<<<< HEAD
+=======
+pandoc Practicum-ControlFlow.md -s -o ../PDFDOCUMENTATION/Practicum-ControlFlow.pdf
+pandoc Practicum-rejoinders.md -s -o ../PDFDOCUMENTATION/Practicum-rejoinders.pdf
+pandoc Practicum-messaging.md -s -o ../PDFDOCUMENTATION/Practicum-messaging.pdf
+pandoc Practicum-Gleaning.md -s -o ../PDFDOCUMENTATION/Practicum-Gleaning.pdf
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 pandoc ChatScript-Debugging-Manual.md -s -o ../PDFDOCUMENTATION/ChatScript-Debugging-Manual.pdf
 pandoc ChatScript-Fact-Manual.md -s -o ../PDFDOCUMENTATION/ChatScript-Fact-Manual.pdf
 pandoc ChatScript-Finalizing-A-Bot.md -s -o ../PDFDOCUMENTATION/ChatScript-Finalizing-A-Bot.pdf

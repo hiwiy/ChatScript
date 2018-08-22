@@ -66,8 +66,11 @@ typedef struct WORDENTRY //   a dictionary entry  - starred items are written to
 #endif
 } WORDENTRY;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 typedef struct CALLFRAME
 {
     char* label;
@@ -93,6 +96,10 @@ typedef struct CALLFRAME
     }x;
 
 }CALLFRAME;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 // EXCEPTION/ERROR
 // error recovery
 #define SERVER_RECOVERY 4

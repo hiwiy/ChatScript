@@ -1,6 +1,10 @@
 # ChatScript Debugger Manual
 © Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 1/31/2018 cs8.0  
+=======
+<br>Revision 2/18/2018 cs8.1  
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 You can run an interactive debugger environment (IDE) if you have Windows.
 You launch it by going to BINARIES and double clicking on ChatScript IDE.
@@ -30,7 +34,11 @@ come to rest in the IDE, awaiting your commands.
 ## Script window
 The script window displays your source file, information on the 
 debugger commands, debugging commands (:xxx), IDE commands, and system
+<<<<<<< HEAD
 variables (and imporant CS interchange variables). 
+=======
+variables (and important CS interchange variables). 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 Your script files will also be displayed when you request it (:i filename) or
 when some breakpoint requires it to show you where you are.
@@ -90,6 +98,11 @@ Here is where you type input for CS or for the IDE.
 IDE input is prefixed with `:i`. Naming a function or variable or 
 concept set is just like clicking on it in the script window. It will put 
 the variable in the variables window or display the code in the script window.
+<<<<<<< HEAD
+=======
+You can also name a rule label and code display will jump to there. Not the full
+topic label, just what you put as the label in `u: MYLABEL () ...`, i.e., MYLABEL.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ```
 :i ~control
 ```
@@ -135,7 +148,25 @@ has.
 
 If you click to the left of a global variable, it will set a breakpoint for when the 
 value of that variable changes and will put a B before it. Click again in that 
+<<<<<<< HEAD
 area and it removes the breakpoint.
+=======
+area and it removes the breakpoint.  You can request a break when the value becomes =, <, or > some
+value using 
+```
+:i varname = test 
+:i varname > 5    -- integer values only
+:i varname < 5    -- integer values only
+```
+
+You can also use various engine debug commands while at a break,
+including ```:trace``` and ```:word```. Just dont try to use
+things that have massive impact, like
+```
+:document, :source, :reset, :bot, :user, :restart
+```
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 # System resource information
 
@@ -162,10 +193,21 @@ current user input. By default it shows you the `adjusted` input, what the
 tokenizer and various NLP corrections have been made to result in the input 
 the system is actually processing at present. 
 
+<<<<<<< HEAD
 Click anywhere in the sentence box and it changes to show you the 
 `raw` input, what the user provided (after tokenization).
 
 Click again and it shows you the `canonical` form of the input.
+=======
+L-click anywhere in the sentence box and it changes to show you the 
+`raw` input, what the user provided (after tokenization).
+
+L-click again and it shows you the `canonical` form of the input.
+
+L-click again and it returns to the `adjusted` form of the input.
+
+If you R-click on a word, it will show you the concepts it is involved in in the output window.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 #  Buttons
 
@@ -208,8 +250,17 @@ to see why you are getting the output you get.
 Breakpoint if any system function return a failure code. These typically
 suggest you passed it bad arguments. With this, you can see when this happens.
 
+<<<<<<< HEAD
 ## Clear
 Remove all breakpoints currently set (not including variable breaks).
+=======
+Cntrl-lclick tells the debugger to terminate current input and return to top level.
+
+## Clear
+L-click removes all breakpoints currently set (not including variable breaks).
+R-click temporarily disables all breakpoints set (including variable breaks and msg break and fail break).
+R-click again to re-enable.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## Global
 Restore variable window to showing global variables if it is currently

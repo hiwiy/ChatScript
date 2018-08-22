@@ -14,6 +14,10 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTH
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endif
 
+<<<<<<< HEAD
+=======
+#define ACCELLSIZE 3
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 extern int impliedIf;
 extern unsigned int withinLoop;
 char* HandleIf(char* ptr, char* buffer, FunctionResult &result);

@@ -44,6 +44,10 @@ extern DEBUGAPI debugEndTurn; // about to save user file marker
 extern DEBUGLOOPAPI debugCall;
 extern unsigned int idetrace;
 extern DEBUGVARAPI debugVar;
+<<<<<<< HEAD
+=======
+extern DEBUGVARAPI debugMark;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 extern int outputlevel;
 extern DEBUGAPI debugAction;
 extern int forkcount;

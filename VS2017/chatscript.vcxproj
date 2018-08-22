@@ -71,7 +71,11 @@
     <ClCompile Include="..\SRC\csocket.cpp" />
     <ClCompile Include="..\SRC\cs_ev.c" />
     <ClCompile Include="..\SRC\dictionarySystem.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="..\SRC\duktape\duktape.c" />
+=======
+    <ClCompile Include="..\SRC\duktape\duktape.cpp" />
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
     <ClCompile Include="..\SRC\english.cpp" />
     <ClCompile Include="..\SRC\englishtagger.cpp" />
     <ClCompile Include="..\SRC\evserver.cpp" />
@@ -115,7 +119,11 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>false</UseOfMfc>
+<<<<<<< HEAD
     <PlatformToolset>v141</PlatformToolset>
+=======
+    <PlatformToolset>v140</PlatformToolset>
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dictionarybuild|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

@@ -1031,6 +1031,27 @@ bool IsArithmeticOperator(char* word)
 		);
 } 
 
+<<<<<<< HEAD
+=======
+bool IsArithmeticOp(char* word)
+{
+    word = SkipWhitespace(word);
+    char c = *word;
+    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '&') return true;
+    return
+        ((c == '|' && (word[1] == ' ' || word[1] == '^' || word[1] == '=')) ||
+        (c == '%' && !word[1]) ||
+            (c == '%' && word[1] == ' ') ||
+            (c == '%' && word[1] == '=') ||
+            (c == '^' && !word[1]) ||
+            (c == '^' && word[1] == ' ') ||
+            (c == '^' && word[1] == '=') ||
+            (c == '<' && word[1] == '<') ||
+            (c == '>' && word[1] == '>')
+            );
+}
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 char* IsUTF8(char* buffer,char* character) // swallow a single utf8 character (ptr past it) or return null 
 {
 	*character = *buffer;
@@ -1493,7 +1514,11 @@ char* WriteFloat(char* buffer, double value, int useNumberStyle)
 	return buffer;
 }
 
+<<<<<<< HEAD
 bool IsFloat(char* word, char* end, int useNumberStyle)
+=======
+char IsFloat(char* word, char* end, int useNumberStyle)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 {
 	if (*(end - 1) == '.') return false;	 // float does not end with ., that is sentence end
 	if (*word == '-' || *word == '+') ++word; // ignore sign
@@ -1517,7 +1542,13 @@ bool IsFloat(char* word, char* end, int useNumberStyle)
 			else return false; // non digit is fatal
 		}
     }
+<<<<<<< HEAD
     return (period == 1 || exponent);
+=======
+    if (period == 1) return 1;
+    if (exponent) return 'e';
+    return 0;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 }
 
 bool IsNumericDate(char* word,char* end) // 01.02.2009 or 1.02.2009 or 1.2.2009
@@ -1580,8 +1611,13 @@ bool IsUrl(char* word, char* end)
 	char* at = strchr(tmp,'@');	// check for email
 	if (at) 
 	{
+<<<<<<< HEAD
 		char* dot = strchr(at+2,'.'); // must have character after @ and before .
 		if (dot && IsAlphaUTF8(dot[1])) return true;
+=======
+		char* dot = strchr(at+2,'.'); // must have character or digit after @ and before . (RFC1123 section 2.1)
+		if (dot && IsAlphaUTF8OrDigit(dot[1])) return true;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	}
 
 	//	check domain suffix is somewhat known as a TLD
@@ -1985,7 +2021,11 @@ int ReadALine(char* buffer,FILE* in,unsigned int limit,bool returnEmptyLines,boo
 	currentFileLine = maxFileLine; // revert to best seen
 	if (currentFileLine == 0)
 	{
+<<<<<<< HEAD
 		BOM = (BOM == BOMSET) ? BOMUTF8 : NOBOM; // start of file, set BOM to null
+=======
+		BOM = (BOM == BOMSET) ? BOMSET : NOBOM; // start of file, set BOM to null
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		hasHighChar = false; // for outside verify
 	}
 	*buffer = 0;
@@ -2274,7 +2314,11 @@ RESUME:
 	buffer[1] = 0;
 	buffer[2] = 1; //   clear ahead to make it obvious we are at end when debugging
 
+<<<<<<< HEAD
 	if (hasutf && BOM)  hasbadutf = AdjustUTF8(start, start - 1); // DO NOT ADJUST BINARY FILES
+=======
+	if (hasutf && BOM == BOMUTF8)  hasbadutf = AdjustUTF8(start, start - 1); // DO NOT ADJUST BINARY FILES
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	if (hasbadutf && showBadUTF && !server)  
 		Log(STDTRACELOG,(char*)"Bad UTF-8 %s at %d in %s\r\n",start,currentFileLine,currentFilename);
     return (buffer - start);
@@ -2571,8 +2615,20 @@ char* Purify(char* msg) // used for logging to remove real newline characters so
 
 size_t OutputLimit(unsigned char* data) // insert eols where limitations exist
 {
+<<<<<<< HEAD
 	char extra[HIDDEN_OVERLAP+1];
 	strncpy(extra,((char*)data) + strlen((char*)data),HIDDEN_OVERLAP); // preserve any hidden data on why and serverctrlz
+=======
+    char* original1 = (char*)data;
+	char extra[HIDDEN_OVERLAP+1];
+    char* mydata = (char*)data;
+    size_t len = strlen(mydata) + 1; // ptr to ctrlz ctrlz + why
+    char* zzwhy = mydata + len;
+    size_t len1 = strlen(zzwhy) + 1; 
+    char* active = zzwhy + len1 + 1;
+    size_t len2 = strlen(active) + 1;
+	memcpy(extra, zzwhy,HIDDEN_OVERLAP); // preserve any hidden data on why and serverctrlz
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 	unsigned char* original = data;
 	unsigned char* lastBlank = data;
@@ -2591,7 +2647,11 @@ size_t OutputLimit(unsigned char* data) // insert eols where limitations exist
 		if (*data == ' ') lastBlank = data;
 		else if (*data == '\n') lastAt = lastBlank = data+1; // internal newlines restart checking
 	}
+<<<<<<< HEAD
 	strncpy(((char*)data) + strlen((char*)data), extra, HIDDEN_OVERLAP);
+=======
+	memcpy(((char*)data) +  1, extra, HIDDEN_OVERLAP);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	return data - original;
 }
 

@@ -35,6 +35,10 @@ FunctionResult JSONDeleteCode(char* buffer);
 FunctionResult JSONCopyCode(char* buffer);
 FunctionResult JSONCreateCode(char* buffer);
 FunctionResult JSONReadCSVCode(char* buffer);
+<<<<<<< HEAD
+=======
+MEANING GetUniqueJsonComposite(char* prefix);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 MEANING jsonValue(char* value, unsigned int& flags);
 void JsonRenumber(FACT* F);
 void jkillfact(WORDP D);

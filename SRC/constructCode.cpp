@@ -171,12 +171,20 @@ char* HandleIf(char* ptr, char* buffer,FunctionResult& result)
 
 		if (*ptr == '(') // old format - std if internals
 		{
+<<<<<<< HEAD
 			endptr = strchr(ptr,'{') - 3; // offset to jump past pattern
+=======
+			endptr = strchr(ptr,'{') - ACCELLSIZE; // offset to jump past pattern
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		}
 		else // new format, can use std if or pattern match
 		{
 			endptr = ptr + Decode(ptr);
+<<<<<<< HEAD
 			ptr += 3; // skip jump to end of pattern and point to pattern
+=======
+			ptr += ACCELLSIZE; // skip jump to end of pattern and point to pattern
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		}
 
 		//   Perform TEST condition
@@ -446,6 +454,11 @@ FunctionResult HandleRelation(char* word1,char* op, char* word2,bool output,int&
 		char* currency2;
 		unsigned char* cur1 = GetCurrency((unsigned char*) val1, currency1);
 		unsigned char* cur2 = GetCurrency((unsigned char*) val2, currency2); // use text string comparison though isdigitword calls it a number
+<<<<<<< HEAD
+=======
+        char* end1 = val1 + strlen(val1);
+        char* end2 = val2 + strlen(val2);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 		if (*val1 == '#' || !IsDigitWord(val1,AMERICAN_NUMBERS,true) || *val2 == '#' ||  !IsDigitWord(val2,AMERICAN_NUMBERS,true) || 
             strchr(val1, ':') || strchr(val2, ':') || 
@@ -483,7 +496,11 @@ FunctionResult HandleRelation(char* word1,char* op, char* word2,bool output,int&
 			else result = FAILRULE_BIT;
 		}
 		//   handle double ops
+<<<<<<< HEAD
 		else if ((strchr(val1,'.') && val1[1]) || (strchr(val2,'.') && val2[1])) // at least one arg is float
+=======
+		else if (IsFloat(val1, end1, numberStyle) || IsFloat(val2, end2, numberStyle)) // at least one arg is float
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		{
 			char* comma = 0; 
 			while ((comma = strchr(val1,',')))  memmove(comma,comma+1,strlen(comma)); // remove embedded commas

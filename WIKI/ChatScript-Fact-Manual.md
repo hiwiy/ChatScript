@@ -1,6 +1,10 @@
 # ChatScript Fact Manual
 © Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 10/22/2017 cs7.6
+=======
+<br>Revision 6/9/2018 cs8.3
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 * [Simple Facts](ChatScript-Fact-Manual.md#simple-facts)
 * [Advanced Facts](ChatScript-Fact-Manual.md#advanced-facts)
@@ -135,7 +139,10 @@ You can also do `!^query`. Or
     if (^query(direct_vo ? want toy)) {@0subject wants a toy.}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ## Private queries
 
 You can define your own queries beyond the LIVEDATA ones. 
@@ -794,6 +801,31 @@ in a script before any uses of `@bettername`, which now mean `@12`. Then you can
 
     $$tmp = @betternamesubject
 
+<<<<<<< HEAD
+=======
+## Predefined  queries
+
+`exact_`  - use the given arguments without expanding beyond them. Most efficient when you
+know exactly what you want.
+
+`exact_svrange` - find facts given subject and verb, where object is a number and must be in range (>= propogate <= match)
+`exact_vrange`	find facts given verb, where object must be number in range (>= propogate <= match)
+```
+e.g. @0 = ^query(exact_vrange ? myverb ? -1 ? ? $_lowvalue $_highvalue)
+```
+
+`direct_` and `direct_flag`
+
+`up2set` -  propogate upwards from subject to find the fact that leads to object of which is a given concept 
+```
+given: (soap member ~hygiene_items) and (~hygiene_item member ~personal_items) and (~personal_items member ~drugstore) and (~drugstore member ~storetypes)
+given  ^query(up2set soap ? '~store_type 10 )   - ie, what kind of store sells soap
+yields (~drugstore member ~storetypes) 
+```
+
+`up2seta` - similar to up2set but you name the verb instead of assuming member/is
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## Defining your own queries
 

@@ -350,6 +350,11 @@ bool SpellCheckSentence()
 {
 	WORDP E;
 	fixedSpell = false;
+<<<<<<< HEAD
+=======
+    int badcount = 0;
+    int goodcount = 0;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 	int startWord = FindOOBEnd(1);
 	for (int i = startWord; i <= wordCount; ++i)
 	{
@@ -381,6 +386,7 @@ bool SpellCheckSentence()
 		WORDP D = FindWord(word, 0, PRIMARY_CASE_ALLOWED);
 		if (D && !IS_NEW_WORD(D))
 		{
+<<<<<<< HEAD
 			if (D->properties & (FOREIGN_WORD| PART_OF_SPEECH) || *D->word == '~' || D->systemFlags & PATTERN_WORD) continue;	// we know this word clearly or its a concept set ref emotion
 			if (D <= dictionaryPreBuild[LAYER_0]) continue; // in dictionary - if a substitute would have happend by now
 			if (stricmp(language, "English")) continue; // foreign word we know
@@ -388,6 +394,24 @@ bool SpellCheckSentence()
 		}
 
 		if (IsDate(word)) continue; // allow 1970/10/5 or similar
+=======
+            bool good = false;
+			if (D->properties & TAG_TEST|| *D->word == '~' || D->systemFlags & PATTERN_WORD) good = true;	// we know this word clearly or its a concept set ref emotion
+			else if (D <= dictionaryPreBuild[LAYER_0]) good = true; // in dictionary - if a substitute would have happend by now
+            else if (stricmp(language, "English")) good = true; // foreign word we know
+            else if (IsConceptMember(D)) good = true;
+            if (good)
+            {
+                ++goodcount;
+                continue;
+            }
+		}
+		if (IsDate(word)) continue; // allow 1970/10/5 or similar
+        
+        // he's probably messing with us
+        if (++badcount > 10 && !goodcount) break;
+        if (badcount > 30 ) break;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 		// degrees
 		if (*word == 0xc2 && word[1] == 0xb0 && !word[3]) continue; // leave degreeC,F,K, etc alone
@@ -429,12 +453,22 @@ bool SpellCheckSentence()
 		char* dot = strchr(word, '.');
 		if (dot && FindWord(word, 0)) continue;
 
+<<<<<<< HEAD
 		// split conjoined sentetence Missouri.Fix
+=======
+		// split conjoined sentetence Missouri.Fix  or Missouri..Fix
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		if (dot && dot != word && dot[1])
 		{
 			*dot = 0;
 			WORDP X = FindWord(word, 0);
+<<<<<<< HEAD
 			WORDP Y = FindWord(dot + 1, 0);
+=======
+			char* rest = dot + 1;
+			while (rest[1] == '.') ++rest; // swallow all excess dots
+			WORDP Y = FindWord(rest + 1, 0);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (X && Y) // we recognize the words
 			{
 				char* tokens[4];
@@ -443,7 +477,11 @@ bool SpellCheckSentence()
 				tokens[2] = oper;
 				*oper = '.';
 				oper[1] = 0;
+<<<<<<< HEAD
 				tokens[3] = dot + 1;
+=======
+				tokens[3] = rest + 1;
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 				ReplaceWords("dotsentence", i, 1, 3, tokens);
 				fixedSpell = true;
 				continue;
@@ -627,6 +665,29 @@ bool SpellCheckSentence()
 			}
 		}
 
+<<<<<<< HEAD
+=======
+        // merge with prior token?
+        if (i != 1 && *wordStarts[i - 1] != '"') // allow piece to stand, sequences code will find it
+        {
+            char join[MAX_WORD_SIZE * 3];
+            strcpy(join, wordStarts[i - 1]);
+            strcat(join, "_");
+            strcat(join, word);
+            WORDP D = FindWord(join, 0, (tokenControl & ONLY_LOWERCASE) ? PRIMARY_CASE_ALLOWED : STANDARD_LOOKUP);
+            if (D && D->properties & PART_OF_SPEECH && !(D->properties & AUX_VERB)) 
+            {
+                ++i;
+                continue;
+            }
+            if (D && D->systemFlags & PATTERN_WORD) 
+            {
+                ++i;
+                continue;
+            }
+        }
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		// sloppy omitted g in lookin
 		if (word[len - 1] == 'n' && word[len - 2] == 'i')
 		{
@@ -1477,6 +1538,10 @@ char* SpellFix(char* originalWord,int start,uint64 posflags)
             WORDINFO dictWordData;
             ComputeWordData(D->word, &dictWordData);
             int val = EditDistance(dictWordData, realWordData, min);
+<<<<<<< HEAD
+=======
+            if (D->internalBits & UPPERCASE_HASH) ++val; // lower case should win any tie against proper name
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 			if (val <= min) // as good or better
 			{
 				if (spellTrace) Log(STDTRACELOG,"    found: %s %d\r\n", D->word, val);

@@ -1,6 +1,10 @@
 # ChatScript System Functions Manual
 © Bruce Wilcox, gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 11/19/2017 cs7.7
+=======
+<br>Revision 8/12/2018 cs8.4
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 * [Topic Functions](ChatScript-System-Functions-Manual.md#topic-functions)
 * [Marking Functions](ChatScript-System-Functions-Manual.md#marking-functions)
@@ -90,6 +94,16 @@ will be a keyword of some topic to pick. E.g.,
     ^gambit(~ PENDING ~mygeneraltopic FAIL)
 
 
+<<<<<<< HEAD
+=======
+### `^findrule ( label )`
+
+On the assumption that you only have one occurence of a rule label in your script,
+if you provide that label to this function, it will find the corresponding rule anywhere
+in your script and return the rule tag corresponding to it. If you have more than one such labelled Rule
+it merely returns the first one it finds (which will be earliest rule in earliest compiled topic).
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 ### `^getrule ( what label )`
 
 for the given rule label or tag, return some fragment of the rule.
@@ -403,8 +417,15 @@ the global unmark.
 The inverse of specific `^mark`, this takes a matchvariable that was
 filled at the position in the sentence you want erased and removes the mark on the word
 or concept set or topic name given. Pattern matching for it in that position will now fail.
+<<<<<<< HEAD
 But it is not symmetric to `^mark` because it does not remove all implied marks that mark
 may have set.
+=======
+If the word was a phrase, then all words in that phrase have the mark removed. Thus
+`South Georgia` which has `Georgia` embedded within it, and both might be ~geographic_area, will have both words unmarked if you unmark ~geographic_area.
+But it is not symmetric to `^mark` because it does not remove all implied marks that mark
+may have set. 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ### `^unmark ( * n )`
 
@@ -565,9 +586,15 @@ from `^input` and not from the user by `%revisedInput` (bool) being true (1).
 
 The argument is the name of a match variable.
 Whatever it has memorized will be used to locate the corresponding series of words 
+<<<<<<< HEAD
 in the original raw input from the user that led to this match. 
 
 E.g., if the input was: _I lick ice crem_, the converted input became _I lick ice_create_ and you'd memorized the food onto a match variable, then you could do `^original(_0)` and get back _ice crem_.
+=======
+in the original raw input from the user that led to this match. That is, the value is prior to any spell correction done by ChatScript.
+
+E.g., if the input was: _I lick ice crem_, the converted input became _I lick ice_cream_ and you'd memorized the food onto a match variable, then you could do `^original(_0)` and get back _ice crem_.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 Another example:
 
@@ -745,6 +772,10 @@ These flags apply to output as it is sent to the user:
 | `RESPONSE_REMOVETILDE`            | remove leading ~ on class names               |
 | `RESPONSE_NOCONVERTSPECIAL`    | don't convert ecaped n, r, and t into ascii direct characters  |
 | `RESPONSE_CURLYQUOTES`    | change simple quotes to curly quotes (starting and ending)  |
+<<<<<<< HEAD
+=======
+| `RESPONSE_NOFACTUALIZE`    | suppresses building bot output facts (for postprocessing)  |
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 
 ### `^preprint ( stream )`
@@ -1352,6 +1383,11 @@ so it doesn't accumulate.
 
 This releases memory back to the last `^memorymark()`. It is best
 done after your main control of the document bot has finished processing a sentence.
+<<<<<<< HEAD
+=======
+Partly because the analysis of the sentence is lost and so no later rules can pattern 
+match to it (though you can call ^analyze to reacquire your sentence).
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 E.g.,
 
 ```
@@ -1371,6 +1407,13 @@ system will clear all fact sets. It will clear all user variables set after the 
 (leaving the ones before alone). It will then release facts, text, and dictionary nodes
 created after the mark.
 
+<<<<<<< HEAD
+=======
+The only data you can pass out from a ^memoryMark/^memoryfree zone is data
+stored on match variables (which have size limitations) or on the count field of a dictionary word
+of a preexisting word.
+
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ### `^memorygc ()`
 
@@ -1434,11 +1477,22 @@ bunch of json during a system bootup (`^csboot`) under one naming and then use a
 different naming for user json created later and code can determine the source of the data.
 
 
+<<<<<<< HEAD
 ### `^jsonreadcvs ( TAB filepath )`
 
 reads a tsv (tab delimited spreadsheet file) and returns a JSON array representing it. The lines are all objects in an array.
 The line is an object where non-empty fields are given as field indexes. The first field is 0. Empty fields are skipped over and their number omitted.
 
+=======
+### `^readfile ( TAB filepath )`
+
+`^readfile ( TAB filepath )` reads a tsv (tab delimited spreadsheet file) and returns a JSON array representing it. The lines are all objects in an array.
+The line is an object where non-empty fields are given as field indexes. The first field is 0. Empty fields are skipped over and their number omitted.
+`^readfile ( TAB filepath 'function)` reads tsv and spreads fields onto arguments of 'function, which it calls onceper line
+`^readfile ( LINE filepath 'function)` reads any file and passes each line untouched as the sole argument to the function.
+
+Fomerly called ^jsonreadcsv.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ### `^jsonundecodestring ( string )`
 

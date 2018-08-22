@@ -25,7 +25,11 @@ extern int uppercaseFind;
 extern int concepts[MAX_SENTENCE_LENGTH]; 
 extern int topics[MAX_SENTENCE_LENGTH]; 
 extern int upperCount, lowerCount;
+<<<<<<< HEAD
 unsigned int GetNextSpot(WORDP D,int start,int& startx,int& endx,bool reverse = false);
+=======
+unsigned int GetNextSpot(WORDP D,int start,int& startx,int& endx,bool reverse = false,int gap = 0);
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 unsigned int GetIthSpot(WORDP D,int i,int& start,int& end);
 bool MarkWordHit(int depth,int ucase,WORDP D, int index, int start,int end);
 void MarkMeaningAndImplications(int depth,int ucase,MEANING M,int start,int end,bool canonical = false, bool sequence = false, bool once = false);

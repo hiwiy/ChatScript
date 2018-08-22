@@ -1,11 +1,63 @@
+<<<<<<< HEAD
 version 8.0  1/31/2018
+=======
+# version 8.4 8/12/2018
+1. ^findrule(label) finds a rule with that label (not tag) anywhere in all topics
+    and returns the tag for it (presumes unique label)
+2. in filesxxx build file, if you name a directory with two tailing slashes, 
+	then the system will compile all files recursively within and below that folder.
+3. $cs_responseControl RESPONSE_NOFACTUALIZE to suppress fact creation of bots output
+4. script compiler directive  ignorespell:  to block some kinds of spelling warnings
+	ignorespell:  word1 word2 ...    (use lower case form of word, will not warn about upper and lower case mixtures)
+ 	ignorespell: *    turn off all spelling warnings on casing
+	ignorespell: !*   turn on all spell warnings on casing
+
+# version 8.31 6/18/2018
+1. ^readfile(line filename 'function) will read lines from the file and pass them untouched
+   as the sole argument of function. This is formerly called: ^jsonreadcvs which is legal but
+   deprecated.
+2. max match variable is now _30 instead of _20
+
+# version 8.3 6/9/2018
+1. new manual Practicum - Messaging
+2. loop now allows function call as argument:  loop( ^length(@0)) {...}
+3. new manual Practicum-ControlFlow
+4. may now use match variables and quoted match variables in json indirections:  
+    $_x[_5] = 4
+    $_x._5 = 5
+    $_x['_5) = 5
+    $_x.'_5 = 5
+    $_tmp = $_x._5
+    etc
+5. :allmembers ~concept ~nonconcept ~nonconcept dumps the members of ~concept into TMP/tmp.txt, one per line, 
+   but excludes any that are member of the ~nonconcept sets.
+6. command line param "authorize" allows all server users to use : commands, regardless of authorized.txt.
+7. new manual Practicum - Gleaning
+
+# version 8.2 4/1/2018
+1. debugger has autosizing to your screen and save/restore for size/location adjustments you make
+2. ^query(exact_svrange x y ? -1 ? ? lowvalue highvalue) Finds facts whose object is x<=object<=y numeric
+3. ^query(exact_vrange ? y ? -1 ? ? lowvalue highvalue)  see Predefined  queries section in Facts Manual
+ 
+# version 8.1 2-18-2018
+1.CS Debugger now has been released in Release mode, so maybe it works for you, and has new features-- read the manual again.
+2. new manuals: Practicum- Rejoinders and Practicum- Patterns
+3. $cs_sequence wins over default sequence limit of 5 words in a row
+4. !<< >> is now legal
+
+# version 8.0  1/31/2018
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 1. files to compile by script compiler must now end with suffix .top or .tbl so you can
    allow other files in same directories (like readme.txt, etc).
 2. :timelog computes avg/min/max of a server log response times
 3. for json arrays can now do:  $_array1 +=  $_array2 and $_array1 += value
 4. Windows GUI debugger for CS.  See ChatScript debugger manual.
 
+<<<<<<< HEAD
 version 7.73 12/7/2017
+=======
+# version 7.73 12/7/2017
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 1. several fixes to pattern matcher
 
 # version 7.72  IMPORTANT FIX FOR BUG INTRODUCTION IN 7.6 -- KNOWLEDGE of adverbs in dictionary lost

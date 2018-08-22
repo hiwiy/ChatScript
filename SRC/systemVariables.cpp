@@ -728,7 +728,11 @@ static char* SoriginalInput(char* value)
 	{
 		int depth = 1;
 		bool quote = false;
+<<<<<<< HEAD
 		while (++at)
+=======
+		while (*++at)
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 		{
 			if (*at != '"' && quote) continue; // swallow stuff in quotes
 			if (*at == '"' && *(at-1) != '\\') quote = !quote;

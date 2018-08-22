@@ -1,6 +1,10 @@
 # ChatScript Basic User Manual
 © Bruce Wilcox, mailto:gowilcox@gmail.com www.brilligunderstanding.com
+<<<<<<< HEAD
 <br>Revision 9/24/2017 cs7.55
+=======
+<br>Revision 2/18/2018 cs8.1
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 * [Overview](ChatScript-Basic-User-Manual.md#overview)
 * [Simple Topics](ChatScript-Basic-User-Manual.md#simple-topics)
@@ -778,6 +782,13 @@ is wrong and will not match anything and should be
 
     u: ( can I go back ) 
 
+<<<<<<< HEAD
+=======
+## Contractions
+
+ChatScript automatically expands contractions. DO NOT put contractions
+in your patterns. You will break the expansion of that contraction.
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 
 ## Proper names
 
@@ -1077,9 +1088,15 @@ At most it will last for the duration of the current volley (several sentences m
 after which it should be presumed trashed. Whenever you start a volley, 
 you should presume match variables all hold unknown junk.
 
+<<<<<<< HEAD
 You are allowed `_0` through `_20`. 
 
 I often use the `_10` to `_20` range as "safe" variables for the duration of a volley, 
+=======
+You are allowed `_0` through `_30`. 
+
+I often use the above `_10` range as "safe" variables for the duration of a volley, 
+>>>>>>> b08f1c7c8a8ee637dd0622a1431eb95d8acaa81c
 because I will never match that many variables in a single sentence. 
 I am unlikely to even match more than 5. So I can dedicate them any way I want to. 
 
