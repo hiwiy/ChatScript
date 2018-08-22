@@ -1,0 +1,133 @@
+﻿Hi Welcome to astu.I don't know what to say.System startup mine Tue Aug 07 23:03:35 2018
+ChatScript Version 8.0  compiled Feb  1 2018 03:26:02
+
+WARNING SUMMARY: 
+  line 24 of introduction.top: CONCEPT-3 Concept/topic already defined ~food
+  line 30 of introduction.top: Keyword Who should not be uppercase - did prior rule fail to close
+  line 31 of introduction.top: Keyword How should not be uppercase - did prior rule fail to close
+  line 33 of introduction.top: Keyword Where should not be uppercase - did prior rule fail to close
+  line 1 of : Undefined set or topic ~introductions line 6 in simplecontrol.top
+  line 3 of : Undefined set or topic ~keywordless line 67 in simplecontrol.top
+  line 4 of : Undefined set or topic ~quibble_all line 75 in simplecontrol.top
+7 serious warnings, 0 function warnings, 0 spelling warnings, 1 case warnings, 0 substitution warnings
+    
+
+Finished compile
+
+System startup createsystem Tue Aug 07 23:03:35 2018
+Server ChatScript EVSERVER Version 8.0 pid: 16460 64 bit LINUX compiled Feb  1 2018 03:26:02 host=local
+Params:   dict:2097151 fact:800000 text:100000kb hash:215127 
+          buffer:80x80kb cache:1x5000kb userfacts:100 outputlimit:80000 loglimit:80000
+Build0:  dict=68204  fact=129729  heap=1151212 Compiled:Jan31'18-19:39:54 by version 8.0 "0"
+Build1:  dict=95  fact=103  heap=129504 Compiled:Aug07'18-23:03:35 by version 8.0 "mine"
+Used 60MB: dict 268,814 (23655kb) hashdepths 74128.68763.39341.18960.8342.3530.1334.485.160.66.15.1.2.1. words 268814 unusedbuckets 74128 fact 215,384 (10338kb) heap 14856kb
+           buffer (6400kb) cache (5000kb)
+Free 113MB: dict 1,828,336 fact 584,616 stack/heap 85,143KB 
+
+    *** Server WIDE OPEN to :command use.
+Astu is doing fineYou can find food in astu lounges. This are Student lounge Teachers lounge Central caffe Mestawet caffe Containers.Hi Welcome to astu.Its at syber. "Syber is a place where fresh and female students go to use wifi"I don't know what to say.ASTU is one of the leading science and technology universities in the countrySystem startup mine Wed Aug 08 11:39:47 2018
+ChatScript Version 8.0  compiled Feb  1 2018 03:26:02
+
+ ERROR SUMMARY: 
+  line 1 of fun.top: 
+TOPIC-2 Illegal characters in topic name ~
+  line 2 of fun.top: 
+Bad topic flag ?: for topic ~
+  line 3 of fun.top: 
+Bad topic flag ?: for topic ~
+  line 4 of fun.top: 
+Bad topic flag ?: for topic ~
+
+4 errors - press Enter to quit. Then fix and try again.
+
+
+Finished compile
+
+System startup createsystem Wed Aug 08 11:39:47 2018
+Server ChatScript EVSERVER Version 8.0 pid: 6701 64 bit LINUX compiled Feb  1 2018 03:26:02 host=local
+Params:   dict:2097151 fact:800000 text:100000kb hash:215127 
+          buffer:80x80kb cache:1x5000kb userfacts:100 outputlimit:80000 loglimit:80000
+Build0:  dict=68204  fact=129729  heap=1151212 Compiled:Jan31'18-19:39:54 by version 8.0 "0"
+Build1:  dict=1  fact=0  heap=123924 Compiled: by version  ""
+Used 60MB: dict 268,720 (23647kb) hashdepths 74153.68769.39330.18948.8340.3527.1331.485.161.65.15.1.2.1. words 268720 unusedbuckets 74153 fact 215,281 (10333kb) heap 14851kb
+           buffer (6400kb) cache (5000kb)
+Free 113MB: dict 1,828,430 fact 584,719 stack/heap 85,149KB 
+
+    *** Server WIDE OPEN to :command use.
+No such bot.
+No such bot.
+Welcome to the game. This is an imaginary game which you play by writing what you want to do next. if you don't know the rules you can read the rules first other wise hit enter to beginHello there, I am Zar the guardian. your mission is to move through the mazes of dungeons and get to the room where Olethros the god of destruction is held prisoner. you are now at the first dungeon you have two choices, you can either go left to the second dungeon or right to the third dungeonYou chose left; to continue tell me is three greater than two?Nope try again You chose left; to continue tell me is three greater than two?Wow, you must be a genius. you can enter the second dungeonNow you are in the second dungeon. If you want to proceed you can go through door number three to the fourth dungeon.That seems your only option but you just can not go to the fourth dungeon with out answering this. You can break me with out touching me or even seeing me. what am i?Incorrect That seems your only option but you just can not go to the fourth dungeon with out answering this. You can break me with out touching me or even seeing me. what am i?System startup astu Mon Aug 20 10:25:31 2018
+ChatScript Version 8.0  compiled Feb  1 2018 03:26:02
+
+WARNING SUMMARY: 
+  line 2 of fun.top: Keyword Where should not be uppercase - did prior rule fail to close
+  line 4 of icpc.top: TOPIC-1 Concept already defined with this topic name ~icpc
+  line 29 of projectastu.top: CONCEPT-3 Concept/topic already defined ~cafe
+  line 31 of projectastu.top: CONCEPT-3 Concept/topic already defined ~food
+  line 33 of projectastu.top: TOPIC-1 Concept already defined with this topic name ~astu
+  line 46 of projectastu.top: TOPIC-1 Concept already defined with this topic name ~cafe
+  line 1 of shss.top: CONCEPT-3 Concept/topic already defined ~shss
+  line 3 of shss.top: TOPIC-1 Concept already defined with this topic name ~shss
+  line 1 of soans.top: CONCEPT-3 Concept/topic already defined ~soans
+  line 2 of soans.top: CONCEPT-3 Concept/topic already defined ~math
+  line 3 of soans.top: CONCEPT-3 Concept/topic already defined ~physics
+  line 4 of soans.top: CONCEPT-3 Concept/topic already defined ~chem
+  line 5 of soans.top: CONCEPT-3 Concept/topic already defined ~bio
+  line 6 of soans.top: CONCEPT-3 Concept/topic already defined ~geo
+  line 8 of soans.top: TOPIC-1 Concept already defined with this topic name ~soans
+  line 14 of soans.top: TOPIC-1 Concept already defined with this topic name ~math
+  line 26 of soans.top: TOPIC-1 Concept already defined with this topic name ~physics
+  line 40 of soans.top: TOPIC-1 Concept already defined with this topic name ~chem
+  line 50 of soans.top: TOPIC-1 Concept already defined with this topic name ~bio
+  line 54 of soans.top: TOPIC-1 Concept already defined with this topic name ~geo
+  line 1 of socea.top: CONCEPT-3 Concept/topic already defined ~socea
+  line 2 of socea.top: CONCEPT-3 Concept/topic already defined ~cotm
+  line 3 of socea.top: CONCEPT-3 Concept/topic already defined ~upd
+  line 4 of socea.top: CONCEPT-3 Concept/topic already defined ~arch
+  line 5 of socea.top: CONCEPT-3 Concept/topic already defined ~civil
+  line 6 of socea.top: CONCEPT-3 Concept/topic already defined ~wre
+  line 7 of socea.top: CONCEPT-3 Concept/topic already defined ~geom
+  line 9 of socea.top: TOPIC-1 Concept already defined with this topic name ~socea
+  line 17 of socea.top: TOPIC-1 Concept already defined with this topic name ~cotm
+  line 21 of socea.top: TOPIC-1 Concept already defined with this topic name ~upd
+  line 25 of socea.top: TOPIC-1 Concept already defined with this topic name ~arch
+  line 29 of socea.top: TOPIC-1 Concept already defined with this topic name ~civil
+  line 33 of socea.top: TOPIC-1 Concept already defined with this topic name ~wre
+  line 37 of socea.top: TOPIC-1 Concept already defined with this topic name ~geom
+  line 1 of soeec.top: CONCEPT-3 Concept/topic already defined ~soeec
+  line 2 of soeec.top: CONCEPT-3 Concept/topic already defined ~cse
+  line 3 of soeec.top: CONCEPT-3 Concept/topic already defined ~epce
+  line 4 of soeec.top: CONCEPT-3 Concept/topic already defined ~ece
+  line 6 of soeec.top: TOPIC-1 Concept already defined with this topic name ~soeec
+  line 14 of soeec.top: TOPIC-1 Concept already defined with this topic name ~cse
+  line 59 of soeec.top: TOPIC-1 Concept already defined with this topic name ~epce
+  line 98 of soeec.top: TOPIC-1 Concept already defined with this topic name ~ece
+  line 1 of somcme.top: CONCEPT-3 Concept/topic already defined ~somcme
+  line 2 of somcme.top: CONCEPT-3 Concept/topic already defined ~tae
+  line 3 of somcme.top: CONCEPT-3 Concept/topic already defined ~ce
+  line 4 of somcme.top: CONCEPT-3 Concept/topic already defined ~mdme
+  line 8 of somcme.top: TOPIC-1 Concept already defined with this topic name ~somcme
+  line 16 of somcme.top: TOPIC-1 Concept already defined with this topic name ~tae
+  line 24 of somcme.top: TOPIC-1 Concept already defined with this topic name ~ce
+  line 36 of somcme.top: TOPIC-1 Concept already defined with this topic name ~mdme
+  line 49 of somcme.top: TOPIC-1 Concept already defined with this topic name ~veh
+  line 53 of somcme.top: TOPIC-1 Concept already defined with this topic name ~mat
+  line 4 of : Undefined set or topic ~keywordless line 67 in simplecontrol.top
+  line 5 of : Undefined set or topic ~quibble_all line 75 in simplecontrol.top
+54 serious warnings, 0 function warnings, 0 spelling warnings, 4 case warnings, 1 substitution warnings
+    
+
+Finished compile
+
+System startup createsystem Mon Aug 20 10:25:32 2018
+Server ChatScript EVSERVER Version 8.0 pid: 7845 64 bit LINUX compiled Feb  1 2018 03:26:02 host=local
+Params:   dict:2097151 fact:800000 text:100000kb hash:215127 
+          buffer:80x80kb cache:1x5000kb userfacts:100 outputlimit:80000 loglimit:80000
+Build0:  dict=68204  fact=129841  heap=1151212 Compiled:Jul28'18-11:27:32 by version 8.0 "0"
+Build1:  dict=141  fact=135  heap=174528 Compiled:Aug20'18-10:25:31 by version 8.0 "astu"
+Used 60MB: dict 268,860 (23659kb) hashdepths 74116.68768.39338.18959.8349.3533.1334.486.160.66.15.1.2.1. words 268860 unusedbuckets 74116 fact 215,528 (10345kb) heap 14901kb
+           buffer (6400kb) cache (5000kb)
+Free 113MB: dict 1,828,290 fact 584,472 stack/heap 85,098KB 
+
+    *** Server WIDE OPEN to :command use.
+Have you ever used this chatbot before?Welcome to your first time.I don't know what to sayYou can find food in astu lounges. This are Student lounge Teachers lounge Central caffe Mestawet caffe Containers.I don't know what to say

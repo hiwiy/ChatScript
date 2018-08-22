@@ -1,21 +1,51 @@
-﻿+ babies VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ words VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ cents NOUN NOUN_PLURAL KINDERGARTEN 
+﻿+ teachers NOUN NOUN_PLURAL KINDERGARTEN 
 + defaultbot 
-+ voices VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ fingers VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ brains VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL GRADE3_4 
-+ deflecting VERB_PRESENT_PARTICIPLE VERB GRADE5_6 
-+ faring VERB_PRESENT_PARTICIPLE VERB 
-+ seemed VERB_PAST VERB_PAST_PARTICIPLE VERB ADJECTIVE_PARTICIPLE NOUN_ADJECTIVE KINDERGARTEN 
-+ concerns VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ causes VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL GRADE3_4 
-+ weakest MOST_FORM ADJECTIVE ADJECTIVE_NORMAL KINDERGARTEN 
-+ louder MORE_FORM ADJECTIVE ADJECTIVE_NORMAL KINDERGARTEN 
-+ replied VERB_PAST VERB_PAST_PARTICIPLE VERB ADJECTIVE_PARTICIPLE NOUN_ADJECTIVE KINDERGARTEN 
-+ asked VERB_PAST VERB_PAST_PARTICIPLE VERB ADJECTIVE_PARTICIPLE NOUN_ADJECTIVE GRADE3_4 
-+ kidding VERB_PRESENT_PARTICIPLE VERB KINDERGARTEN 
-+ weekends VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ morals NOUN NOUN_PLURAL GRADE1_2 
-+ cares VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
-+ ignoring VERB_PRESENT_PARTICIPLE VERB GRADE3_4 
++ school_of_applied_natural_science 
++ applied_science_school 
++ natural_science_school 
++ applied_maths 
++ applied_physics 
++ applied_chemistry 
++ applied_chem 
++ applied_bio 
++ applied_biology 
++ applied_geology 
++ applied_geo 
++ school_of_civil_engineering_and_architecture 
++ civil_school 
++ civil_engineering_school 
++ architecture_school 
++ arch_school 
++ construction_technology_and_management 
++ urban_planning_and_design 
++ water_resource_engineering 
++ water_engineering 
++ hydraulics_engineeering 
++ geomatics_engineering 
++ coca_cola 
++ astu_stedium 
++ runing VERB_PRESENT_PARTICIPLE VERB KINDERGARTEN 
++ ground_tennes 
++ adama_science_and_technology_univeristy 
++ adama_university 
++ school_of_electrical_engineering_and_computing 
++ electrical_school 
++ electrical_engineering_and_computing_school 
++ school_of_mechanical_chemical_and_materials_engineering 
++ mech_school 
++ mechanical_school 
++ computer_science_and_engineering 
++ electrical_power_and_control_engineering 
++ electronics_and_communication_engineering 
++ thermal_and_aerospace_engineering 
++ thermal_aerospace 
++ mechanical_design_and_manufacturing_engineering 
++ design_manufacturing 
++ material_science_and_engineering 
++ mechanical_system_and_vehicle_engineering 
++ cafeterias NOUN NOUN_PLURAL GRADE5_6 
++ student_cafeteria 
++ cafes NOUN NOUN_PLURAL 
++ student_cafeterias 
++ places VERB_PRESENT_3PS NOUN VERB NOUN_PLURAL KINDERGARTEN 
++ students NOUN NOUN_PLURAL KINDERGARTEN 

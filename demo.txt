@@ -1,0 +1,191 @@
+topic: ~introductions []
+
+t: [ሰላም] [እንዴት ነው ], የትመሄድ ይፈልጋሉ?  
+
+
+u: SOURCE (ከ _*)
+   አሁን ያሉበት \" '_0 \" ነው?
+   a: (~አዎ)
+        $source = '_0
+        
+   a: (~አይ)
+        እሽ, የትኖት?
+        $source = '_0
+    
+u: TARGET (ዎደ _*)
+   መሄድ የምፈልጉት \" '_0\" ነው ?
+   a: (~አዎ)
+      $target= '_0
+
+   a: (~አይ)
+        	እሽ የት መሄድ ይፍልጋሉ?
+        $target = '_0
+t: አቤል
+
+
+
+topic: ~introductions repeat keep []
+
+t: [Hello] [Hi] [Hey], I will help you plan your travel. Just tell me where you are and
+where you want to go to.
+
+u: (be * at _*)
+   $source = '_0
+   OK, you want to go from $source .
+
+u: (go to _*)
+   $target = '_0 
+   OK, you want to go to $target .
+
+u: (!$source)
+   Where are you?
+
+u: (!$target)
+   Where do you want to go?
+
+u: ($source $target)
+   You want to go from $source to $target .
+   $source = null
+   $target = null
+
+
+
+
+
+
+
+# topic: ~introductions keep repeat []
+
+# t: [Hello] [Hi] [Hey], I will help you to travel.
+# $issues = null
+
+# u: SOURCE (be * at _*)
+#     $source4 = '_0
+#     $issues = null
+
+# u: TARGET (go to _*)
+#     $target4 = _0
+#     $issues = null
+
+# u:($issues = source4 _*) ^reuse(SOURCE)
+
+# u:($issues = target4 _*) ^reuse(TARGET)
+
+# u:(!$source4)
+#     $issues = source4
+
+# u: (!$target4)
+#     $issues = target4
+#     Where do you want to go?
+# u:($source4 $target4)
+#     You want to go from $source4 to %target4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# topic: ~introductions repeat keep []
+
+# t: [Hello] [Hi] [Hey], I will help you plan your travel. Just tell me where you are and
+# where you want to go to.
+
+# u: (be * at _*)
+#    $source = '_0
+#    OK, you want to go from $source .
+
+# u: (go to _*)
+#    $target = '_0 
+#    OK, you want to go to $target .
+
+# u: (!$source)
+#    Where are you?
+
+# u: (!$target)
+#    Where do you want to go?
+
+# u: ($source $target)
+#    You want to go from $source to $target
+
+
+
+
+
+
+
+
+# topic: ~introductions keep repeat []
+
+# t: [Hello] [Hi] [Hey], I will help you to travel.
+# $issues = null
+
+# u: SOURCE (be * at _*)
+#     $source4 = '_0
+#     $issues = null
+
+# u: TARGET (go to _*)
+#     $target4 = _0
+#     $issues = null
+
+# u:($issues = source4 _*) ^reuse(SOURCE)
+
+# u:($issues = target4 _*) ^reuse(TARGET)
+
+# u:(!$source4)
+#     $issues = source4
+
+# u: (!$target4)
+#     $issues = target4
+#     Where do you want to go?
+# u:($source4 $target4)
+#     You want to go from $source4 to %target4
+
+
+##########################################################
+# u: (be * at _*)
+#     $sources ='_0
+
+# u: (go to _*)
+#     $targets = '_0
+
+# u:(!$sources)
+#     Where are you?
+
+# u:(!$targets)
+#     Where do you want to go?
+# u: ($sources $targets)
+#     You want to go from $sources to $targets 
+###########################################################
+
+# u:([go fly travel] to _*)
+#     $target = '_0
+#     OK, you want to go to $target
+
+# u: (what do I want)
+#     You want to go from $source to $target
+
+
+# u:(I want to go * to _*) OK, you want to go to _0.
+# t:[Hello] [Hi] [Hey], [talk] [speak] [say something] to me!
+# u: What (what are you)  I am bot.
+# u: (tele me about your self) ^reuse(What) ^reuse(HI) 
+# u: (where do you live) I live on your computer.
+# u: ([What where])  Good Question.
