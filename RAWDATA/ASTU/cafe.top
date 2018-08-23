@@ -1,0 +1,20 @@
+concept: ~cafe["students cafteria"]
+concept: ~lounch["cafteria for non-cafe" cafe]
+concept: ~food[shro dnch sga zerfore therefore msr misir mekorony pasta rice ruz firfir frfr]
+topic: ~cafteria ( ~cafe ~lounch ~food)
+t: do you want to know where the fresh cafe is?
+ a: ([yes "i do" definately]) it is located near to CSE building.
+ a: ([no "i dont"]) okay but you can ask when ever you want to.
+ a: (i already know that) its nice that u r getting familiar.
+ a: (why) i tought u might need it
+t: what is your favorite local dish shro or sga wet?
+ a: ([shiro shro]) definately cafe will suit you.
+ a: (sga) oops only twice a week u will say Bingo.
+ a:(non) okay.
+# table: ^foodtable(~food)
+u:CAFE_TIME(~cafe ["opening time" schedule open closed start end]) the cafe schedule is 6:30am-8:30am in the mornin, 11:30am-1:00pm lounch time and 4:00pm-6:30pm in the evening.
+u:CAFE_FOOD([type kind]_1 food ~cafe) there are varity of foods in the cafe if you wish i can tell you the type of meal for each day
+  a:([tell talk ~yes])  i will tell u soon...
+  a:(~no) okay u will find out yourself
+
+

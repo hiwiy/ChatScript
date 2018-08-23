@@ -1,0 +1,22 @@
+concept: ~soeec("school of electrical" "school of electrical engineering and computing" electrical elec computer power communication electronics)
+concept: ~mech("school of mechanical chemical and material engineering" somcme mechanical "school of mechanical")
+concept: ~civil("school of civil and architectural engineering" "school of civil" architecture cotem)
+concept: ~natural("school of natural science" "natural science" biology chemistry math geology physics)
+ concept: ~school(~soeec ~mech ~civil ~natural)
+
+topic: ~schools nostay()
+t: in wich field of study are you interested in?
+ a:(~soeec) that is nice school of electrical engineering and computing will be your destny.
+ a:(~mech) school of mechanical engineering is the way to go.
+ a:(~civil) wich is school of civil engineering and architecture.
+ a:(~natural) i can guss that you are more about science.
+ a:(why) i tought you have one.
+
+u: (["tell me about" "talk about" "what is"] ~school)
+  a:(~school == ~soeec) school of electrical engineering is one of the top schools in ASTU wich has three branches EPCE, ECE, CSE. do you want to know more detail? # detail.
+  a:(~school == ~mech) school of mechanical chemical and material engineering is.......
+  a:(~school == ~civil) school of civil engineering and architecture is a school bla bla bla....
+  a:(~school == ~natural) school of natural science is......
+  a:(_1 !? ~school) no such school.
+
+   

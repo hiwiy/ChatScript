@@ -1,0 +1,12 @@
+concept: ~dorm[dormitary ]
+concept: ~mami[procter controller]
+topic: ~dormitary(~dorm ~mami)
+t: did you get you block and dorm number?
+  a:(yes) nice to hear that.
+  a:([no nop]) then you have to check it on the dormitary page.
+  a:(why) because that it the very first thing to do.
+u: (where is the ~dorm) are u seeking for the boys or for girls?
+  a:(boys) fresh boys will be placed to kulbi.
+  a:(girls) fresh girls will be placed to penta.
+u: (where is kulbi) it is....
+u: (<< ~dorm rules>> _*) the dorm has bzu rules the basics are...

@@ -1,0 +1,28 @@
+concept: ~astu[ASTU "Adama sciencce and technology universty" college gibi astu universty]
+concept: ~yes[ yes "yes, its my first time" "it's my first time" "i haven't heard about you" yep]
+concept: ~no[No "i was here" nop]
+
+concept: ~good[Good nice fine descent]
+concept: ~bad["not good" furstrating "just breathing"]
+concept: ~nazret[nazrit adama Adama "near nazret"]
+concept: ~outside[Addis Sheger "Addis abeba" DZ "debrezeyt" asela amhara tgiray debub afar sumale oromiya benshangul gambela harer]
+
+topic: ~introduction []
+ t:( ) ^keep() welcome to ASTU. is this your first time?
+ a: (~yes) welcome to your guid and friend Tina. what is you name?
+    a: (_1)
+       $name=_1
+         welcome again $name. how are you doing?
+ b: (~no) welcome back ,user. how have you been? ^keep().
+s:(~good) nice to hear that.
+s: (~bad) ooops! whats up dear?
+  a: (!~nazret_*) what ever! you will be familiar soon.
+t: are you from nazret or other places?
+  a:(~nazret) ooh. I hope, it wont be difficult to adapt the environmet for   you.
+  a:(~outside) okay! but dont worry about adapting the environment because i will be with you when ever you need.
+
+u: (what time is it now) it is %date now.
+
+
+
+

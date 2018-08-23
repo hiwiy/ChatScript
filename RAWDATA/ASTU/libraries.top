@@ -1,0 +1,20 @@
+concept: ~lab[library]
+concept: ~study[mechekel chkela tnat]
+topic: ~libraries (~lab ~study)
+t: do you know that there is a female library?
+  a:(~rly) yes it is the coolest thing in the campus
+  a:(yep) good for u
+  a:(why) coz if u dont, u have to know it.
+u:(how many libraries are there in the ~astu) there are 6 libraries. female library,central library, naturalscience library, law library ,PG library and pre-engineering library. for wich one do you want to know more
+   a:(pre-engineering) ^reuse(PRE_LIB)
+
+u:(which ~lab is the [best nice cool]) female is the best for females... but central is also nice. but i also recomend u to try pre-engineering libray.
+
+u:([duration schedule time] _* ~libray [open close]) all libraries work 24 hours a day except for sundays it is from 8:00am (2:00,morning local) till 9:30pm (3:30,nigt local).
+
+u:PRE_LIB(["tell me" talk speak] about pre-engineering library) pre-engineering library is a library found around kereyu and it is the best place to study esp for fresh man students.
+
+u:(where is per-engineering library) ^reuse(PRE_LIB)
+
+u:(what be <<library rules>>) library rules are betam bzu and the basics are....
+
